@@ -45,64 +45,64 @@ const SignupForm = () => {
   };
 
   return (
-            <Box component="form" noValidate onSubmit={handleFormSubmit} sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="username"
-                label="Username"
-                name="username"
-                autoComplete="username"
-                autoFocus
-                onChange={handleChange}
-                value={signupData.username}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="email"
-                label="Email"
-                type="email"
-                id="email"
-                autoComplete="current-password"
-                onChange={handleChange}
-                value={signupData.email}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={handleChange}
-                value={signupData.password}
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                disabled={!(signupData.username && signupData.email && signupData.password)}
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign Up
-              </Button>
-              <Grid container>
-                <Grid item>
-                  <Link href="/login" variant="body2">
-                    Already have an account? Login
-                  </Link>
-                </Grid>
-              </Grid>
-            </Box>
+    <Box component="form" noValidate onSubmit={handleFormSubmit} sx={{ mt: 1 }}>
+      <TextField
+        margin="normal"
+        required
+        fullWidth
+        id="username"
+        label="Username"
+        name="username"
+        autoComplete="username"
+        autoFocus
+        onChange={handleChange}
+        value={signupData.username}
+      />
+      <TextField
+        margin="normal"
+        required
+        fullWidth
+        name="email"
+        label="Email"
+        type="email"
+        id="email"
+        autoComplete="current-password"
+        onChange={handleChange}
+        value={signupData.email}
+      />
+      <TextField
+        margin="normal"
+        required
+        fullWidth
+        name="password"
+        label="Password"
+        type="password"
+        id="password"
+        autoComplete="current-password"
+        onChange={handleChange}
+        value={signupData.password}
+      />
+      <FormControlLabel
+        control={<Checkbox value="remember" color="primary" />}
+        label="Remember me"
+      />
+      <Button
+        type="submit"
+        disabled={!(signupData.username && signupData.email && signupData.password)}
+        fullWidth
+        variant="contained"
+        sx={{ mt: 3, mb: 2 }}
+      >
+        Sign Up
+      </Button>
+      <Grid container>
+        <Grid item>
+          <Link href="/login" variant="body2">
+            Already have an account? Login
+          </Link>
+        </Grid>
+      </Grid>
+    </Box>
           
 
   );
