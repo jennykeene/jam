@@ -6,7 +6,7 @@ import Image from '../../assets/Images/image1back.jpg';
 const Content = () => {
     const styles = {
         paperContainer: {
-            backgroundImage: `url(${Image})`,
+            backgroundImage: `(${Image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             height: "100vh",
