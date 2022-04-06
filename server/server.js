@@ -5,7 +5,7 @@ const { ApolloServer } = require('apollo-server-express');
 const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
 const { ApolloServerPluginLandingPageGraphQLPlayground } = require('apollo-server-core');
 const { authMiddleware } = require('./utils/auth');
-//const { typeDefs, resolvers } = require('./schemas');
+const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
 const startApolloServer = async () => {
@@ -18,8 +18,8 @@ const startApolloServer = async () => {
       ApolloServerPluginLandingPageGraphQLPlayground(),
       ApolloServerPluginDrainHttpServer({ httpServer }) 
     ],
-    //typeDefs,
-    //resolvers,
+    typeDefs,
+    resolvers,
     context: authMiddleware
   });
   await server.start(); //start Apollo Server
