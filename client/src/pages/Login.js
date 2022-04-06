@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
+import Content from '../components/Login/Content';
+import Footer from '../components/Login/Footer';
+import Header from '../components/Login/Header';
+
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <>
+      <Header />
+      <Content />
+      <Footer />
+    </>
   )
 }
 
-export default Login
+export default Login;
