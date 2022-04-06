@@ -1,9 +1,12 @@
 import React from 'react'
+import Header from '../components/Signup/Header'
 
 const Signup = () => {
   return (
-    <div>Signup</div>
+    <>
+      <Header />
+    </>
   )
 }
 
-export default Signup
+export default Signup;
