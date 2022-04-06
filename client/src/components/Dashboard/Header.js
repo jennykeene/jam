@@ -102,7 +102,7 @@ function Header(props) {
         {/* // Bar with tabs (Tasks, News, Weather) */}
         <AppBar component="div" position="static" elevation={0} sx={{ zIndex: 0 }}>
           <Tabs value={0} textColor="inherit">
-            <Tab href="/preview" label="Tasks" />
+            <Tab href="/dashboard" label="Tasks" />
             <Tab href="/calculator "label="Calculator" />
             <Tab href="/news "label="News" />
           </Tabs>
