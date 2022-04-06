@@ -105,7 +105,6 @@ function Header(props) {
             <Tab href="/preview" label="Tasks" />
             <Tab href="/calculator "label="Calculator" />
             <Tab href="/news "label="News" />
-            <Tab label="Help" />
           </Tabs>
         </AppBar>
       </>
