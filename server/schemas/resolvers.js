@@ -70,9 +70,19 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to login first')
         },
-        // removeTask: async () => {
-
-        // }
+        removeTask: async( parent, { task }, context) => {
+            if(context.user) {
+                // deleteBook fx from user-controllers.js
+                const updatedBooks = await User.findOneAndUpdate(
+                    { _id: context.user._id},
+                    //pulling deleted book from savedBooks array
+                    { $pull: { tasks: task._id }},
+                    { new: true }
+                );
+                // Book is part of User model
+                return updatedTasks;
+            }
+        }
     }
 };
 
