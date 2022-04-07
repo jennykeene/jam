@@ -4,8 +4,6 @@ import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -15,29 +13,31 @@ const LoginForm = () => {
     username: '', 
     password: '' 
   });
-  const [login, { error }] = useMutation(LOGIN_USER);
+  const [loginPeasant, { error }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({...formData, [name]: value });
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
-      const { data } = await login({
-        variables: { ...formData},
+      const mutationResponse = await loginPeasant({
+        variables: { 
+          username: formData.username, 
+          password: formData.password 
+        },
       });
-      Auth.login(data.login.token);
-
-      if (error) {
-        console.log(error.message);
-      }
-
-    } catch (err) {
-      console.log(err);
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (error) {
+      console.log(error);
     }
   };
   
@@ -53,7 +53,6 @@ const LoginForm = () => {
 		autoComplete="username"
 		autoFocus
 		onChange={handleChange}
-		value={formData.username}
 		/>
 		<TextField
 		margin="normal"
@@ -65,11 +64,6 @@ const LoginForm = () => {
 		id="password"
 		autoComplete="current-password"
 		onChange={handleChange}
-		value={formData.password}
-		/>
-		<FormControlLabel
-		control={<Checkbox value="remember" color="primary" />}
-		label="Remember me"
 		/>
 		<Button
 		type="submit"
@@ -84,6 +78,7 @@ const LoginForm = () => {
 			<Link href="/signup" variant="body2">
 			{"Don't have an account? Sign Up"}
 			</Link>
+			{error && <div>Login failed loser</div>}
 		</Grid>
 		</Grid>
 	</Box>
