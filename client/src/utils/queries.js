@@ -7,6 +7,7 @@ export const QUERY_TASKS = gql`
         tasks {
             _id
             taskText
+            completed
         }
     }
 `;
