@@ -73,7 +73,7 @@ const resolvers = {
         removeTask: async( parent, { task }, context) => {
             if(context.user) {
                 // deleteBook fx from user-controllers.js
-                const updatedBooks = await User.findOneAndUpdate(
+                const updatedTasks = await User.findOneAndUpdate(
                     { _id: context.user._id},
                     //pulling deleted book from savedBooks array
                     { $pull: { tasks: task._id }},
