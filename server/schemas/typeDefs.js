@@ -15,6 +15,7 @@ const typeDefs = gql`
     type Task {
         _id: ID
         taskText: String
+        completed: Boolean
         createdAt: String
         username: String
     }
