@@ -33,6 +33,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
         addTask(taskText: String!): Task
+        removeTask(taskText: String!): User
     }
 `;
 
