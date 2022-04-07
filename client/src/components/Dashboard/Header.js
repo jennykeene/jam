@@ -30,7 +30,7 @@ function Header(props) {
                   </IconButton>
                 </Grid>
                 <Grid item xs />
-                {/* ******* home link ******* */}
+                {/* ******* login link ******* */}
                 <Grid item>
                   <Button
                     href="/"
@@ -42,41 +42,9 @@ function Header(props) {
                         color: 'common.white',
                       },
                     }}
-                  >
-                    home 
-                  </Button>
-                </Grid>
-                {/* ******* login link ******* */}
-                <Grid item>
-                  <Button
-                    href="/login"
-                    variant="body2"
-                    sx={{
-                      textDecoration: 'none',
-                      color: lightColor,
-                      '&:hover': {
-                        color: 'common.white',
-                      },
-                    }}
                     rel="noopener noreferrer"
                   >
-                    LOGIN
-                  </Button>
-                </Grid>
-                {/************ Signup link ************/}
-                <Grid item>
-                  <Button
-                    href="/signup"
-                    variant="body2"
-                    sx={{
-                      textDecoration: 'none',
-                      color: lightColor,
-                      '&:hover': {
-                        color: 'common.white',
-                      },
-                    }}
-                  >
-                    Signup
+                    logout
                   </Button>
                 </Grid>
               </Grid>
@@ -102,7 +70,7 @@ function Header(props) {
         {/* // Bar with tabs (Tasks, News, Weather) */}
         <AppBar component="div" position="static" elevation={0} sx={{ zIndex: 0 }}>
           <Tabs value={0} textColor="inherit">
-            <Tab href="/dashboard" label="Tasks" />
+            <Tab href="/preview" label="Tasks" />
             <Tab href="/calculator "label="Calculator" />
             <Tab href="/news "label="News" />
           </Tabs>
