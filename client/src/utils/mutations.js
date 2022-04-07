@@ -32,3 +32,14 @@ export const ADD_TASK = gql`
     }
   }
 `
+
+export const REMOVE_TASK = gql`
+    mutation removeTask($taskText: String!) {
+        removeTask(taskText: $taskText) {
+            username
+            tasks {
+                taskText
+            }
+        }    
+    }
+`;
