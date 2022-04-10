@@ -63,7 +63,7 @@ const resolvers = {
                 const task = await Task.create({ ...args, username: context.user.username });
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { tasks: task._id }},
+                    { $addToSet: { tasks: task._id }},
                     { new: true } //without true flag Mongo return orginal doc instead of updated document
                 );
                 return task;
