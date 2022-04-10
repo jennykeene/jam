@@ -13,14 +13,18 @@ const taskSchema = new Schema(
         default: Date.now,
         get: (createdDateTime) => moment(createdDateTime).format('MM DD YY [at] hh:mm a')
     },
+    completed: {
+      type: Boolean,
+      default: false
+    },
     username: {
       type: String,
-      required: true
     }
   },
   {
     toJSON: {
-      getters: true
+      getters: true,
+      virtuals: true
     }
   }
 );
