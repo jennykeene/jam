@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const kastSchema = require('./Kast');
 
 const userSchema = new Schema(
   {
@@ -21,12 +22,13 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
-    tasks: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Task'
-      }
-    ]
+    savedKast: [kastSchema]
+    // tasks: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Task'
+    //   }
+    // ]
   },
   {
     toJSON: {
@@ -51,7 +53,7 @@ userSchema.methods.isCorrectPassword = async function(password) {
 };
 
 userSchema.virtual('taskCount').get(function() {
-  return this.tasks.length;
+  return this.savedKast.length;
 });
 
 const User = model('User', userSchema);
