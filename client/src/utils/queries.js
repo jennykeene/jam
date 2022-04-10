@@ -27,11 +27,10 @@ export const QUERY_USER = gql`
 `
 //query to retrieve all data related to logged-in user 
 export const QUERY_ME = gql`
-    {
+    query me {
         me {
             _id
             username
-            email
             tasks {
                 _id
                 taskText
