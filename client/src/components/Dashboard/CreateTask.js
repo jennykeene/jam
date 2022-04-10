@@ -11,7 +11,7 @@ import { ADD_TASK } from '../../utils/mutations';
 
 
 const CreateTask = () => {
-    const [taskInputData, setTaskInputData] = useState({taskText: ""});
+    const [setTaskInputData] = useState({taskText: ""});
     const [addTask] = useMutation(ADD_TASK)
 
     const handleChange = (event) => {
