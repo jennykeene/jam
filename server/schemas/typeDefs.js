@@ -9,7 +9,7 @@ const typeDefs = gql`
         _id: ID
         username: String
         email: String
-        tasks: [Task]
+        # tasks: [Task]
     }
     # instructing tasks query so that each task returns this info
     type Task {
@@ -17,7 +17,6 @@ const typeDefs = gql`
         taskText: String
         completed: Boolean
         createdAt: String
-        username: String
     }
     type Auth {
         token: ID!
@@ -34,7 +33,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
         addTask(taskText: String!): Task
-        removeTask(taskText: String!): User
+        removeTask(taskText: String!): Task
     }
 `;
 
