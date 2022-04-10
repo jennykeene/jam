@@ -32,9 +32,7 @@ const resolvers = {
             const params = username ? { username } : {};
             return Task.find(params).sort({ createdAt: -1 });
         },
-        // tasks: async () => {
-        //     return Task.find({}).populate('taskText');
-        // },
+
     },
     Mutation: {
         
@@ -58,13 +56,12 @@ const resolvers = {
             return { token, user };
         },
         addTask: async (parent, args, context) => {
-            //check if user is logged on by checking for existence of context.user
             if (context.user) {
-                const task = await Task.create({ ...args, username: context.user.username });
-                await User.findByIdAndUpdate(
-                    { _id: context.user._id },
+                const task = await Task.create({ ...args });
+                await Task.findByIdAndUpdate(
+                    { _id: task._id },
                     { $addToSet: { tasks: task._id }},
-                    { new: true } //without true flag Mongo return orginal doc instead of updated document
+                    { new: true }
                 );
                 return task;
             }
@@ -72,10 +69,8 @@ const resolvers = {
         },
         removeTask: async( parent, { task }, context) => {
             if(context.user) {
-                // deleteBook fx from user-controllers.js
-                const updatedTasks = await User.findOneAndUpdate(
-                    { _id: context.user._id},
-                    //pulling deleted book from savedBooks array
+                const updatedTasks = await Task.findOneAndUpdate(
+                    { _id: task._id},
                     { $pull: { tasks: task._id }},
                     { new: true }
                 );
