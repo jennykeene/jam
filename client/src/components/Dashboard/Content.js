@@ -1,6 +1,6 @@
 import React from 'react'
 import CreateTask from './CreateTask';
-import SelectTask from './SelectTask';
+//import SelectTask from './SelectTask';
 import ToDo from './ToDo';
 
 
@@ -31,7 +31,7 @@ const Content = () => {
                     </div>
                 {/* {{!--*********** Select Task ***********--}} */}
                     <div className='column is-6'>
-                        <SelectTask />
+                        {/* <SelectTask /> */}
                     </div>
                 </div>
           
