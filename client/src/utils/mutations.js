@@ -27,8 +27,9 @@ export const ADD_USER = gql`
 export const ADD_TASK = gql`
   mutation addTask($taskText: String!) {
     addTask(taskText: $taskText) {
-      _id
-      thoughtText
+      taskText
+      completed
+      createdAt
     }
   }
 `
