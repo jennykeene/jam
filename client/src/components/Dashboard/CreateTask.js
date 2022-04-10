@@ -8,24 +8,29 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { useMutation } from '@apollo/client';
 import { ADD_TASK } from '../../utils/mutations';
-import Auth from '../../utils/auth';
+
 
 const CreateTask = () => {
     const [taskInputData, setTaskInputData] = useState({taskText: ""});
     const [addTask] = useMutation(ADD_TASK)
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
-        setTaskInputData({ ...taskInputData, [name]: value });
+
+        const taskInputData = document.querySelector('#taskText').value;
+        console.log(taskInputData);
+        setTaskInputData(taskInputData);
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        const taskText = document.querySelector('#taskText').value;
+
         try {
-            const { data } = await addTask({ variables: { taskInputData }});
-            Auth.login(data.addTask.token) 
+            const { data } = await addTask({ variables: { taskText }});
+            
             console.log(data)
+            window.location.assign('/dashboard');
         } catch (err) {
             console.error(err);
         }
@@ -47,7 +52,6 @@ const CreateTask = () => {
                         id="taskText"
                         autoComplete="taskText"
                         onChange={handleChange}
-                        value={taskInputData.taskText}
                     />
                     <Button
                         type="submit"
