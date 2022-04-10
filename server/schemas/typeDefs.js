@@ -9,7 +9,12 @@ const typeDefs = gql`
         _id: ID
         username: String
         email: String
+        savedKast: [Kast]
         # tasks: [Task]
+    }
+    type Kast {
+        _id: ID
+        kastText: String
     }
     # instructing tasks query so that each task returns this info
     type Task {
@@ -34,6 +39,8 @@ const typeDefs = gql`
         login(username: String!, password: String!): Auth
         addTask(taskText: String!): Task
         removeTask(taskText: String!): Task
+        saveKast(description: String): User
+        removeKast(description: String): User
     }
 `;
 
