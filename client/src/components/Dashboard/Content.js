@@ -1,5 +1,7 @@
 import React from 'react'
+// import CreateKast from './CreateKast';
 import CreateTask from './CreateTask';
+// import KastList from './KastList';
 //import SelectTask from './SelectTask';
 import ToDo from './ToDo';
 
@@ -23,7 +25,7 @@ const Content = () => {
                     <div className='column is-6'>
                         <ToDo />
                         <div className='mt-3'>
-
+                            
                         </div>
                         <div className='mt-3'>
 
@@ -31,7 +33,8 @@ const Content = () => {
                     </div>
                 {/* {{!--*********** Select Task ***********--}} */}
                     <div className='column is-6'>
-                        {/* <SelectTask /> */}
+                        {/* <CreateKast />
+                        <KastList /> */}
                     </div>
                 </div>
           
