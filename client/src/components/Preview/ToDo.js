@@ -10,14 +10,20 @@ import Checkbox from '@mui/material/Checkbox';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ListItemButton from '@mui/material/ListItemButton';
 import { REMOVE_TASK } from '../../utils/mutations';
-import Auth from '../../utils/auth';
+import { Card, CardContent, CardHeader } from '@mui/material';
+import { Avatar, Box, Grid, LinearProgress, Typography } from '@mui/material';
+import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
 
-const ToDo = () => {
-	const [checked, setChecked] = useState([1]);
+const ToDo = (props) => {
+	const [checked, setChecked] = useState([]);
+	const [progressTotal, setProgress] = useState(0);
+	//const [secondary, setSecondary] = React.useState(false);
 	const [removeTask] = useMutation(REMOVE_TASK);
+	// query existing tasks from database
 	const { data } = useQuery( QUERY_TASKS );
     console.log(data);
     const tasks = data?.tasks || [];
+	console.log(tasks); // returns array 
 
 	//handles checkboxes 
 	const handleToggle = (value) => () => {
@@ -30,68 +36,130 @@ const ToDo = () => {
 			newChecked.splice(currentIndex, 1);
 		}
 		setChecked(newChecked);
+
+		const numberofChecked = checked.length + 1;
+		console.log(numberofChecked);
+		return handleProgressBar(numberofChecked);
+		
 	};
+	
+	const handleProgressBar = (numberofChecked) => {
+		const totalTasks = tasks.length;
+		console.log (totalTasks);
+
+		const progressTotal = (((numberofChecked) / totalTasks) * 100)
+		console.log(progressTotal);
+		setProgress(progressTotal);
+	}
+
 
 	const handleDeleteTask = async (task) => {
-		const token = Auth.loggedIn() ? Auth.getToken() : null;
+		console.log(task);
+		const deleteTask = JSON.stringify(task._id);
+		const textofTask = task.taskText
+		console.log(textofTask);
+		console.log (deleteTask);
 
-		if (!token) {
-			return false;
-		}
-
-		try{
-			await removeTask({ variables: { task }});
-		} catch (err) {
-		console.error(err);
-		}
-  	};
+        const taskText = document.querySelector("#list-node");
+		console.log(taskText)
+		
+        try {
+			const { data } = await removeTask({ variables: {_id: task._id } });
+			console.log(data);
+			window.location.assign('/dashboard');
+        } catch (err) {
+            console.error(err);
+        }
+    }
+	
 	
   	return (
-		<div class="card events-card m-3">
-			<header class="card-header">
-				<p class="card-header-title is-centered">
-					To Do
-				</p>
-			</header>
-			<div class="card-table">
-            
-                {tasks.map((task, value) => {
-					const labelId = `checkbox-list-secondary-label-${value}`
-                return(
-                    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                        <ListItem>
-                            {/* ********* checkbox ********* */}
-                            <ListItemButton role={undefined} key={value} dense>
-                                <ListItemIcon>
-                                    <Checkbox
-                                    edge="start"
-									onChange={handleToggle(value)}
-                                    checked={checked.indexOf(value) !== -1}
-                                    tabIndex={-1}
-                                    disableRipple
-                                    inputProps={{'aria-labelledby': labelId }}
-                                    />
-                                </ListItemIcon>
-                            </ListItemButton>
+		<>
+			<Card
+				sx={{ height: '25%', mb: 2, }}
+				{...props}
+			>
+				<CardContent>
+					<Grid
+						container
+						spacing={3}
+						sx={{ justifyContent: 'space-between' }}
+					>
+						<Grid item>
+							<Typography
+								color="textSecondary"
+								gutterBottom
+								variant="overline"
+							>
+								TASKS PROGRESS
+							</Typography>
+							<Typography
+								color="textPrimary"
+								variant="h4"
+							>
+								{progressTotal + "%"}
+							</Typography>
+						</Grid>
+						<Grid item>
+							<Avatar sx={{ backgroundColor: 'secondary.main', height: 56, width: 56 }} >
+								<InsertChartIcon />
+							</Avatar>
+						</Grid>
+					</Grid>
+					<Box sx={{ pt: 3 }}>
+						<LinearProgress
+						onChange={handleProgressBar}
+						value={progressTotal}
+						variant="determinate"
+						/>
+					</Box>
+				</CardContent>
+			</Card>
 
-                            {/********** text **********/}
-                            <ListItemText id={task._id} primary={`${ task.taskText }`} />
-                        
-                            {/********** delete icon **********/}
-                            <IconButton edge="end" aria-label="delete">
-                                <DeleteIcon onClick={handleDeleteTask(task)}/>
-                            </IconButton>
-                            
-                        
-                        </ListItem>
+            <Card>
+				<CardHeader title="To Do List" sx={{ display: 'flex', flexDirection: 'column-reverse'}}/>
+				<CardContent>
+				{React.Children.toArray(
+					tasks.map((task, value) => {
+						const labelId = `checkbox-list-secondary-label-${value}`
+					
+						return(
+							<List display="flex" id="list-node"  key={task._id} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
+								<ListItem id="list-item-parent">
+									{/* ********* checkbox ********* */}
+									<ListItemButton role={undefined} key={value} dense>
+										<ListItemIcon>
+											<Checkbox
+											onChange={handleToggle(value)}
+											checked={checked.indexOf(value) !== -1}
+											tabIndex={-1}
+											disableRipple
+											inputProps={{'aria-labelledby': labelId }}
+											/>
+										</ListItemIcon>
+									</ListItemButton>
 
-                    </List>
-                );
-            })}
-          
-			</div>
-		</div>  
+									{/********** text **********/}
+									<ListItemText 
+										id="charlie" 
+										primary={`${ task.taskText }`} 
+										sx={{ mr: 3, color: 'primary.main' }} 
+									/>
+								
+									{/********** delete icon **********/}
+									<IconButton aria-label="delete" onClick={() => handleDeleteTask(task)}>
+										<DeleteIcon />
+									</IconButton>					
+								</ListItem>
+							</List>
+						);
+					})
+				)}
+				</CardContent>
+			</Card>
+		</>
 	)
 }
 
 export default ToDo;
+
