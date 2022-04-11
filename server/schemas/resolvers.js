@@ -32,6 +32,9 @@ const resolvers = {
             const params = username ? { username } : {};
             return Task.find(params).sort({ createdAt: -1 });
         },
+        getTask: async (parent, args) => {
+            await Task.findById(args._id)
+        }
 
     },
     Mutation: {
@@ -67,15 +70,28 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to login first')
         },
-        removeTask: async( parent, { task }, context) => {
+        removeTask: async(_, { _id }) => {
+            return await Task.findOneAndRemove({_id: _id})
+        },
+        saveKast: async( parent, args, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { savedKasts: args }},
+                    { new: true, runValidators: true }
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError("You need to login in first!");
+        },
+        removeKast: async( parent, { kastId }, context) => {
             if(context.user) {
-                const updatedTasks = await Task.findOneAndUpdate(
-                    { _id: task._id},
-                    { $pull: { tasks: task._id }},
+                const updatedBooks = await User.findOneAndUpdate(
+                    { _id: context.user._id},
+                    { $pull: { savedBooks: { kastId }}},
                     { new: true }
                 );
-                // Book is part of User model
-                return updatedTasks;
+                return updatedBooks;
             }
         }
     }
