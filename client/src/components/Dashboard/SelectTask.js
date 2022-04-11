@@ -100,7 +100,7 @@ const SelectTask = () => {
                                 id="taskText"
                             />
                         </ListItem>
-
+                    {error && <div> You must login first </div>}
                     </List>
                 </Grid>
             </CardContent>
