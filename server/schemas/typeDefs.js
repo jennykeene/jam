@@ -13,7 +13,7 @@ const typeDefs = gql`
         # tasks: [Task]
     }
     type Kast {
-        _id: ID
+        kastId: String
         kastText: String
     }
     # instructing tasks query so that each task returns this info
@@ -32,15 +32,15 @@ const typeDefs = gql`
         users: [User]
         user(username: String): User
         tasks: [Task]!
-        task(_id: ID!): Task
+        getTask(_id: String!): Task
     }
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
         addTask(taskText: String!): Task
-        removeTask(taskText: String!): Task
-        saveKast(description: String): User
-        removeKast(description: String): User
+        removeTask(_id: ID!): Task
+        saveKast(kastId: String!, kastText: String): User
+        removeKast(kastId: String!): User
     }
 `;
 
