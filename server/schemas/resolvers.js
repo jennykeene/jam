@@ -2,7 +2,7 @@
 
 // graphql error handling
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Task } = require('../models');
+const { User, Task, Kast } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -12,7 +12,7 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                    .populate('tasks')
+                    .populate('myKasts')
                 return userData
             }
             throw new AuthenticationError('Not logged in');
@@ -35,7 +35,6 @@ const resolvers = {
         getTask: async (parent, args) => {
             await Task.findById(args._id)
         }
-
     },
     Mutation: {
         
@@ -60,7 +59,7 @@ const resolvers = {
         },
         addTask: async (parent, args, context) => {
             if (context.user) {
-                const task = await Task.create({ ...args });
+                const task = await Task.create({ ...args }); //spread operator: shorthand for listing out all array elements(arguments) one by one
                 await Task.findByIdAndUpdate(
                     { _id: task._id },
                     { $addToSet: { tasks: task._id }},
@@ -73,12 +72,12 @@ const resolvers = {
         removeTask: async(_, { _id }) => {
             return await Task.findOneAndRemove({_id: _id})
         },
-        saveKast: async( parent, args, context) => {
+        addKast: async( parent, { input }, context) => {
             if (context.user) {
-                const updatedUser = await User.findOneAndUpdate(
+                const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedKasts: args }},
-                    { new: true, runValidators: true }
+                    { $addToSet: { addKast: input } },
+                    { new: true }
                 );
                 return updatedUser;
             }
@@ -86,12 +85,12 @@ const resolvers = {
         },
         removeKast: async( parent, { kastId }, context) => {
             if(context.user) {
-                const updatedBooks = await User.findOneAndUpdate(
+                const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id},
-                    { $pull: { savedBooks: { kastId }}},
+                    { $pull: { kasts: { _id: _id }}},
                     { new: true }
                 );
-                return updatedBooks;
+                return updatedUser;
             }
         }
     }
