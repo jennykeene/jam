@@ -9,7 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ListItemButton from '@mui/material/ListItemButton';
-import { ListItemSecondaryAction } from '@mui/material';
 import { REMOVE_TASK } from '../../utils/mutations';
 import { Card, CardContent, CardHeader } from '@mui/material';
 import { Avatar, Box, Grid, LinearProgress, Typography } from '@mui/material';
@@ -61,7 +60,6 @@ const ToDo = (props) => {
 		console.log(textofTask);
 		console.log (deleteTask);
 
-		//return await Task.findOneAndRemove({_id: _id})
         const taskText = document.querySelector("#list-node");
 		console.log(taskText)
 		
@@ -73,6 +71,7 @@ const ToDo = (props) => {
             console.error(err);
         }
     }
+	
 	
   	return (
 		<>
@@ -118,20 +117,19 @@ const ToDo = (props) => {
 			</Card>
 
             <Card>
-				<CardHeader title="To Do List"/>
+				<CardHeader title="To Do List" sx={{ display: 'flex', flexDirection: 'column-reverse'}}/>
 				<CardContent>
 				{React.Children.toArray(
 					tasks.map((task, value) => {
 						const labelId = `checkbox-list-secondary-label-${value}`
 					
 						return(
-							<List id="list-node" key={task._id} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-								<ListItem id="list-item-parent" >
+							<List display="flex" id="list-node"  key={task._id} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
+								<ListItem id="list-item-parent">
 									{/* ********* checkbox ********* */}
 									<ListItemButton role={undefined} key={value} dense>
 										<ListItemIcon>
 											<Checkbox
-											edge="start"
 											onChange={handleToggle(value)}
 											checked={checked.indexOf(value) !== -1}
 											tabIndex={-1}
@@ -142,14 +140,16 @@ const ToDo = (props) => {
 									</ListItemButton>
 
 									{/********** text **********/}
-									<ListItemText id="charlie" primary={`${ task.taskText }`}/>
+									<ListItemText 
+										id="charlie" 
+										primary={`${ task.taskText }`} 
+										sx={{ mr: 3, color: 'primary.main' }} 
+									/>
 								
 									{/********** delete icon **********/}
-									<ListItemSecondaryAction>
-                    					<IconButton edge="end" aria-label="delete" onClick={() => handleDeleteTask(task)}>
-                      						<DeleteIcon />
-                    					</IconButton>
-                  					</ListItemSecondaryAction>									
+									<IconButton aria-label="delete" onClick={() => handleDeleteTask(task)}>
+										<DeleteIcon />
+									</IconButton>					
 								</ListItem>
 							</List>
 						);
