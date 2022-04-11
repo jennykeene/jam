@@ -11,12 +11,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ListItemButton from '@mui/material/ListItemButton';
 import { ListItemSecondaryAction } from '@mui/material';
 import { REMOVE_TASK } from '../../utils/mutations';
-//import Auth from '../../utils/auth';
 import { Card, CardContent, CardHeader } from '@mui/material';
-import CompletedTask from './CompletedTask';
+import { Avatar, Box, Grid, LinearProgress, Typography } from '@mui/material';
+import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
 
 const ToDo = (props) => {
-	const [checked, setChecked] = useState([0]);
+	const [checked, setChecked] = useState([]);
+	const [progressTotal, setProgress] = useState(0);
 	//const [secondary, setSecondary] = React.useState(false);
 	const [removeTask] = useMutation(REMOVE_TASK);
 	// query existing tasks from database
@@ -37,12 +38,21 @@ const ToDo = (props) => {
 		}
 		setChecked(newChecked);
 
-		const numberofChecked = checked.length;
+		const numberofChecked = checked.length + 1;
 		console.log(numberofChecked);
-		return (
-			<CompletedTask value={numberofChecked} />
-		)
+		return handleProgressBar(numberofChecked);
+		
 	};
+	
+	const handleProgressBar = (numberofChecked) => {
+		const totalTasks = tasks.length;
+		console.log (totalTasks);
+
+		const progressTotal = (((numberofChecked) / totalTasks) * 100)
+		console.log(progressTotal);
+		setProgress(progressTotal);
+	}
+
 
 	const handleDeleteTask = async (task) => {
 		console.log(task);
@@ -56,7 +66,6 @@ const ToDo = (props) => {
 		console.log(taskText)
 		
         try {
-			//taskText.remove();
 			const { data } = await removeTask({ variables: {_id: task._id } });
 			console.log(data);
 			window.location.assign('/dashboard');
@@ -67,6 +76,47 @@ const ToDo = (props) => {
 	
   	return (
 		<>
+			<Card
+				sx={{ height: '25%', mb: 2, }}
+				{...props}
+			>
+				<CardContent>
+					<Grid
+						container
+						spacing={3}
+						sx={{ justifyContent: 'space-between' }}
+					>
+						<Grid item>
+							<Typography
+								color="textSecondary"
+								gutterBottom
+								variant="overline"
+							>
+								TASKS PROGRESS
+							</Typography>
+							<Typography
+								color="textPrimary"
+								variant="h4"
+							>
+								{progressTotal + "%"}
+							</Typography>
+						</Grid>
+						<Grid item>
+							<Avatar sx={{ backgroundColor: 'danger.main', height: 56, width: 56 }} >
+								<InsertChartIcon />
+							</Avatar>
+						</Grid>
+					</Grid>
+					<Box sx={{ pt: 3 }}>
+						<LinearProgress
+						onChange={handleProgressBar}
+						value={progressTotal}
+						variant="determinate"
+						/>
+					</Box>
+				</CardContent>
+			</Card>
+
             <Card>
 				<CardHeader title="TO DO LIST"/>
 				<CardContent>
@@ -113,4 +163,3 @@ const ToDo = (props) => {
 
 export default ToDo;
 
-//onClick={(event) => setSecondary(event.target)}
