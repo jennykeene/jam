@@ -9,16 +9,21 @@ const typeDefs = gql`
         _id: ID
         username: String
         email: String
-        savedKast: [Kast]
+        myKasts: [Kast]
         # tasks: [Task]
     }
     type Kast {
-        kastId: String
-        kastText: String
-    }
-    # instructing tasks query so that each task returns this info
-    type Task {
         _id: ID
+        kastText: String
+        completed: Boolean
+        createdAt: String
+    }
+    # input instead of type
+    input kastInput {
+        name: String
+    }
+
+    type Task {
         taskText: String
         completed: Boolean
         createdAt: String
@@ -39,8 +44,8 @@ const typeDefs = gql`
         login(username: String!, password: String!): Auth
         addTask(taskText: String!): Task
         removeTask(_id: ID!): Task
-        saveKast(kastId: String!, kastText: String): User
-        removeKast(kastId: String!): User
+        addKast(input: kastInput): User
+        removeKast(_id: ID!): User
     }
 `;
 
