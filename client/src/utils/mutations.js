@@ -35,11 +35,33 @@ export const ADD_TASK = gql`
 `
 
 export const REMOVE_TASK = gql`
-    mutation removeTask($taskText: String!) {
-        removeTask(taskText: $taskText) {
+    mutation removeTask($_id: ID!) {
+      removeTask(_id: $_id) {
+        taskText
+        _id
+      }    
+    }
+`;
+
+export const SAVE_KAST= gql`
+    mutation saveKast($kastId: String!, $kastText: String) {
+        saveBook(kastId: $kastId, kastText: $kastText) {
             username
-            tasks {
-                taskText
+            savedKasts {
+                kastId
+                kastText
+            }
+        }
+    }
+`;
+
+export const REMOVE_KAST = gql`
+    mutation removeKast($kastId: String!) {
+        removeKast(kastId: $kastId) {
+            username
+            savedKasts {
+                kastId
+                kastText
             }
         }    
     }
