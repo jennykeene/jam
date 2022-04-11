@@ -22,9 +22,9 @@ export const QUERY_USER = gql`
             _id
             username
             email
-            tasks {
+            myKasts {
                 _id
-                taskText
+                kastText
             }
         }
     }
@@ -35,9 +35,9 @@ export const QUERY_ME = gql`
         me {
             _id
             username
-            tasks {
+            myKasts {
                 _id
-                taskText
+                kastText
             }
         }
     }
