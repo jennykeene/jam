@@ -13,6 +13,7 @@ import { ListItemSecondaryAction } from '@mui/material';
 import { REMOVE_TASK } from '../../utils/mutations';
 //import Auth from '../../utils/auth';
 import { Card, CardContent, CardHeader } from '@mui/material';
+import CompletedTask from './CompletedTask';
 
 const ToDo = (props) => {
 	const [checked, setChecked] = useState([0]);
@@ -35,6 +36,12 @@ const ToDo = (props) => {
 			newChecked.splice(currentIndex, 1);
 		}
 		setChecked(newChecked);
+
+		const numberofChecked = checked.length;
+		console.log(numberofChecked);
+		return (
+			<CompletedTask value={numberofChecked} />
+		)
 	};
 
 	const handleDeleteTask = async (task) => {
