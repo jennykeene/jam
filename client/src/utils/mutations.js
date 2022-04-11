@@ -43,21 +43,20 @@ export const REMOVE_TASK = gql`
     }
 `;
 
-export const SAVE_KAST= gql`
-    mutation saveKast($kastId: String!, $kastText: String) {
-        saveBook(kastId: $kastId, kastText: $kastText) {
+export const ADD_KAST= gql`
+    mutation addKast($input: kastInput!) {
+        addKast(input: $input) {
             username
-            savedKasts {
-                kastId
-                kastText
+            myKasts {
+              kastText
             }
         }
     }
 `;
 
 export const REMOVE_KAST = gql`
-    mutation removeKast($kastId: String!) {
-        removeKast(kastId: $kastId) {
+    mutation removeKast($_id: ID!) {
+        removeKast(_id: $_id) {
             username
             savedKasts {
                 kastId
