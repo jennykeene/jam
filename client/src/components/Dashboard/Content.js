@@ -1,4 +1,5 @@
 import React from 'react'
+
 // import CreateKast from './CreateKast';
 import CreateTask from './CreateTask';
 // import KastList from './KastList';
@@ -19,7 +20,6 @@ const Content = () => {
             </div>
             {/* {{!--************** Little Boxes **************--}} */}
             <div className='column is-9 mt-6'>
-
                 {/* {{!--*********** TASK TO DO ***********--}} */}
                 <div className='columns'>
                     <div className='column is-6'>
