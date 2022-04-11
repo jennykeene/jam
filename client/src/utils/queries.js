@@ -11,7 +11,11 @@ export const QUERY_TASKS = gql`
         }
     }
 `;
-
+export const QUERY_TASK = gql`
+    query getTask {
+        _id
+    }
+`
 export const QUERY_USER = gql`
     query user ($username: String!) {
         user(username: $username) {
