@@ -12,7 +12,7 @@ import { ADD_TASK } from '../../utils/mutations';
 
 const CreateTask = () => {
     const [setTaskInputData] = useState({taskText: ""});
-    const [addTask] = useMutation(ADD_TASK)
+    const [addTask, { error }] = useMutation(ADD_TASK)
 
     const handleChange = (event) => {
 
@@ -63,7 +63,7 @@ const CreateTask = () => {
                     </Button>
                     <Grid container>
                         <Grid item>
-
+                            {error && <div> You must login first </div>}
                         </Grid>
                     </Grid>
                 </Box>
