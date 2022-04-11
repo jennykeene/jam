@@ -1,8 +1,14 @@
+import { Card, CardHeader, Typography } from '@mui/material'
 import React from 'react'
 
 const SelectTask = () => {
   return (
     <div className="column">
+        <Card>
+            <CardHeader>
+                <Typography>Select Task to Add</Typography>
+            </CardHeader>
+        </Card>
         <div className="card" id="select-task-card">
             <header className="card-header has-background-success">
                 <p className="card-header-title has-text-white">Select a Task to Add</p>
