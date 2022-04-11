@@ -102,7 +102,7 @@ const ToDo = (props) => {
 							</Typography>
 						</Grid>
 						<Grid item>
-							<Avatar sx={{ backgroundColor: 'danger.main', height: 56, width: 56 }} >
+							<Avatar sx={{ backgroundColor: 'secondary.main', height: 56, width: 56 }} >
 								<InsertChartIcon />
 							</Avatar>
 						</Grid>
@@ -118,7 +118,7 @@ const ToDo = (props) => {
 			</Card>
 
             <Card>
-				<CardHeader title="TO DO LIST"/>
+				<CardHeader title="To Do List"/>
 				<CardContent>
 				{React.Children.toArray(
 					tasks.map((task, value) => {
