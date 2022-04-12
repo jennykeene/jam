@@ -16,8 +16,7 @@ const SelectTask = () => {
         event.preventDefault();
 
         const kastText = document.querySelector("#taskText > span").innerHTML;
-        console.log(kastText)
-
+        console.log(kastText);
         try {
             const { data } = await addKast({ variables: { kastText }});
             
@@ -27,34 +26,30 @@ const SelectTask = () => {
             console.error(err);
         }
     }
-
-    return (
+   return (
         <Card>
             <CardContent>
                 <Grid item xs={12} md={6}>
                     <Typography variant="h6">
                         Select Task to Add
                     </Typography>
-                    <List onClick={handleClick}>
+                    <List>
                         {/* workout */}
                         <ListItem>
-                            <ListItemAvatar>
+                            <ListItemAvatar  onClick={handleClick}>
                                 <IconButton sx={{ backgroundColor: 'error.main', height: 35, width: 35 }}>
                                     <FitnessCenterIcon />
                                 </IconButton>
                             </ListItemAvatar>
                             <ListItemText sx={{  }}
                                 primary="Work Out"
-                                id="taskText"
-                                name="taskText"
-                                type="taskText"
-                                onClick={handleClick}
+                                id="taskText" 
                                 //secondary={secondary ? 'Secondary text' : null}
                             />
                         </ListItem>
                         {/* study */}
                         <ListItem>
-                            <ListItemAvatar>
+                            <ListItemAvatar  onClick={handleClick}>
                                 <IconButton sx={{ backgroundColor: 'success.main', height: 35, width: 35 }}>
                                     <LaptopMac />
                                 </IconButton>
@@ -66,7 +61,7 @@ const SelectTask = () => {
                         </ListItem>
                         {/* walk dog */}
                         <ListItem>
-                            <ListItemAvatar>
+                            <ListItemAvatar  onClick={handleClick}>
                                 <IconButton sx={{ backgroundColor: 'info.main', height: 35, width: 35 }}>
                                     <Pets />
                                 </IconButton>
