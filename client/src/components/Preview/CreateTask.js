@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,30 +7,32 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { useMutation } from '@apollo/client';
-import { ADD_TASK } from '../../utils/mutations';
+import { ADD_KAST } from '../../utils/mutations';
 
 
 const CreateTask = () => {
-    const [setTaskInputData] = useState({taskText: ""});
-    const [addTask, { error }] = useMutation(ADD_TASK)
+
+    const [addKast, { error }] = useMutation(ADD_KAST)
 
     const handleChange = (event) => {
 
-        const taskInputData = document.querySelector('#taskText').value;
+        const taskInputData = document.querySelector('#kastText').value;
         console.log(taskInputData);
-        setTaskInputData(taskInputData);
+
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const taskText = document.querySelector('#taskText').value;
+
+        const kastText = document.querySelector('#kastText').value;
+        console.log(kastText);
 
         try {
-            const { data } = await addTask({ variables: { taskText }});
+            const { data } = await addKast({ variables: { kastText } });
             
             console.log(data)
-            window.location.assign('/dashboard');
+            window.location.assign('/preview');
         } catch (err) {
             console.error(err);
         }
@@ -46,11 +48,11 @@ const CreateTask = () => {
                         margin="normal"
                         required
                         fullWidth
-                        name="taskText"
+                        name="kastText"
                         label="task name"
-                        type="taskText"
-                        id="taskText"
-                        autoComplete="taskText"
+                        type="kastText"
+                        id="kastText"
+                        autoComplete="kastText"
                         onChange={handleChange}
                     />
                     <Button
