@@ -19,7 +19,6 @@ export const QUERY_TASK = gql`
 export const QUERY_USER = gql`
     query user ($username: String!) {
         user(username: $username) {
-            _id
             username
             email
             myKasts {
@@ -36,8 +35,8 @@ export const QUERY_ME = gql`
             _id
             username
             myKasts {
-                _id
                 kastText
+                _id
             }
         }
     }
