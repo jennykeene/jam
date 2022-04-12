@@ -18,12 +18,8 @@ const typeDefs = gql`
         completed: Boolean
         createdAt: String
     }
-    # input instead of type
-    input kastInput {
-        name: String
-    }
-
     type Task {
+        _id: ID
         taskText: String
         completed: Boolean
         createdAt: String
@@ -35,16 +31,17 @@ const typeDefs = gql`
     type Query {
         me: User
         users: [User]
-        user(username: String): User
+        user(username: String!): User
         tasks: [Task]!
         getTask(_id: String!): Task
+        myKasts: [Kast]!
     }
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
         addTask(taskText: String!): Task
         removeTask(_id: ID!): Task
-        addKast(input: kastInput): User
+        addKast(kastText: String!): User
         removeKast(_id: ID!): User
     }
 `;
