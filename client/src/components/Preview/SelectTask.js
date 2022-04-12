@@ -15,8 +15,10 @@ const SelectTask = () => {
     const handleClick = async (event) => {
         event.preventDefault();
 
-        const kastText = document.querySelector("#taskText > span").innerHTML;
-        console.log(kastText);
+        let btn = event.currentTarget;
+        console.log(btn);
+        let kastText = btn.querySelector(("#taskText > span")).innerHTML;
+        
         try {
             const { data } = await addKast({ variables: { kastText }});
             
@@ -35,64 +37,61 @@ const SelectTask = () => {
                     </Typography>
                     <List>
                         {/* workout */}
-                        <ListItem>
-                            <ListItemAvatar  onClick={handleClick}>
+                        <ListItem onClick={handleClick}>
+                            <ListItemAvatar>
                                 <IconButton sx={{ backgroundColor: 'error.main', height: 35, width: 35 }}>
                                     <FitnessCenterIcon />
                                 </IconButton>
                             </ListItemAvatar>
-                            <ListItemText sx={{  }}
+                            <ListItemText id="taskText" sx={{  }}
                                 primary="Work Out"
-                                id="taskText" 
                                 //secondary={secondary ? 'Secondary text' : null}
-                            />
+                            /> 
                         </ListItem>
                         {/* study */}
-                        <ListItem>
-                            <ListItemAvatar  onClick={handleClick}>
+                        <ListItem onClick={handleClick}>
+                            <ListItemAvatar>
                                 <IconButton sx={{ backgroundColor: 'success.main', height: 35, width: 35 }}>
                                     <LaptopMac />
                                 </IconButton>
                             </ListItemAvatar>
-                            <ListItemText sx={{  }}
+                            <ListItemText id="taskText" sx={{  }}
                                 primary="Study"
-                                id="taskText"
                             />
                         </ListItem>
                         {/* walk dog */}
-                        <ListItem>
-                            <ListItemAvatar  onClick={handleClick}>
+                        <ListItem onClick={handleClick}>
+                            <ListItemAvatar>
                                 <IconButton sx={{ backgroundColor: 'info.main', height: 35, width: 35 }}>
                                     <Pets />
                                 </IconButton>
                             </ListItemAvatar>
-                            <ListItemText sx={{  }}
+                            <ListItemText id="taskText" sx={{  }}
                                 primary="Walk dog"
-                                id="taskText"
                             />
                         </ListItem>
                         {/* clean */}
                         <ListItem>
-                            <ListItemAvatar>
+                            <ListItemAvatar onClick={handleClick}>
                                 <IconButton sx={{ backgroundColor: 'text.secondary', height: 35, width: 35 }}>
                                     <CleaningServices />
                                 </IconButton>
                             </ListItemAvatar>
-                            <ListItemText sx={{  }}
+                            <ListItemText id="taskText" sx={{  }}
                                 primary="Clean"
-                                id="taskText"
+                                
                             />
                         </ListItem>
                         {/* gaming */}
                         <ListItem>
-                            <ListItemAvatar>
+                            <ListItemAvatar onClick={handleClick}>
                                 <IconButton sx={{ backgroundColor: 'error.main', height: 35, width: 35 }}>
                                     <VideogameAsset />
                                 </IconButton>
                             </ListItemAvatar>
-                            <ListItemText sx={{  }}
+                            <ListItemText id="taskText" sx={{  }}
                                 primary="Gaming"
-                                id="taskText"
+                                
                             />
                         </ListItem>
                     {error && <div> You must login first </div>}
