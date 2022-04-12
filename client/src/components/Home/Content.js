@@ -1,7 +1,7 @@
 import React from 'react'
 import Paper from '@mui/material/Paper';
 import PleaseSignIn from './PleaseSignIn';
-import Image from '../../assets/Images/nightsky.jpg';
+import Image from '../../assets/images/nightsky.jpg';
 
 const Content = () => {
     const styles = {
