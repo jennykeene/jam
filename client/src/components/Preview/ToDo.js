@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_TASKS } from '../../utils/queries';
+import { NetworkStatus } from '@apollo/client';
+import { QUERY_ME } from '../../utils/queries';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -19,11 +20,27 @@ const ToDo = (props) => {
 	const [progressTotal, setProgress] = useState(0);
 	//const [secondary, setSecondary] = React.useState(false);
 	const [removeTask] = useMutation(REMOVE_TASK);
-	// query existing tasks from database
-	const { data } = useQuery( QUERY_TASKS );
-    console.log(data);
-    const tasks = data?.tasks || [];
-	console.log(tasks); // returns array 
+	const { loading, error, data, refetch, networkStatus } = useQuery(QUERY_ME, {
+    	notifyOnNetworkStatusChange: true,
+  	});
+	
+	if (networkStatus === NetworkStatus.refetch) return 'Refetching!';
+	if (loading) return null;
+	if (error) return `Error! ${error}`;
+	console.log(data);
+	/* {me: {…}}
+		me:
+		myKasts: Array(2)
+		0: {__typename: 'Kast', kastText: 'swim', _id: null}
+		1: {__typename: 'Kast', kastText: 'swim', _id: null}
+		length: 2
+		[[Prototype]]: Array(0)
+		username: "wes"
+		__typename: "User"
+		_id: "625251ca19e01aadda8e33ac"*/
+	const userData = data.me.myKasts || {};
+	console.log(userData);
+	
 
 	//handles checkboxes 
 	const handleToggle = (value) => () => {
@@ -44,7 +61,7 @@ const ToDo = (props) => {
 	};
 	
 	const handleProgressBar = (numberofChecked) => {
-		const totalTasks = tasks.length;
+		const totalTasks = userData.length;
 		console.log (totalTasks);
 
 		const progressTotal = (((numberofChecked) / totalTasks) * 100)
@@ -66,15 +83,18 @@ const ToDo = (props) => {
         try {
 			const { data } = await removeTask({ variables: {_id: task._id } });
 			console.log(data);
-			window.location.assign('/dashboard');
+			window.location.assign('/preview');
         } catch (err) {
             console.error(err);
         }
     }
 	
-	
+	if (loading) {
+    	return <h2>LOADING...</h2>;
+  	}
   	return (
 		<>
+		<button onClick={() => refetch()}>Refetch!</button>
 			<Card
 				sx={{ height: '25%', mb: 2, }}
 				{...props}
@@ -120,11 +140,11 @@ const ToDo = (props) => {
 				<CardHeader title="To Do List" sx={{ display: 'flex', flexDirection: 'column-reverse'}}/>
 				<CardContent>
 				{React.Children.toArray(
-					tasks.map((task, value) => {
+					userData.map((kast, value) => {
 						const labelId = `checkbox-list-secondary-label-${value}`
 					
 						return(
-							<List display="flex" id="list-node"  key={task._id} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
+							<List display="flex" id="list-node"  key={kast._id} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
 								<ListItem id="list-item-parent">
 									{/* ********* checkbox ********* */}
 									<ListItemButton role={undefined} key={value} dense>
@@ -142,12 +162,12 @@ const ToDo = (props) => {
 									{/********** text **********/}
 									<ListItemText 
 										id="charlie" 
-										primary={`${ task.taskText }`} 
+										primary={`${ kast.kastText }`} 
 										sx={{ mr: 3, color: 'primary.main' }} 
 									/>
 								
 									{/********** delete icon **********/}
-									<IconButton aria-label="delete" onClick={() => handleDeleteTask(task)}>
+									<IconButton aria-label="delete" onClick={() => handleDeleteTask(kast)}>
 										<DeleteIcon />
 									</IconButton>					
 								</ListItem>
