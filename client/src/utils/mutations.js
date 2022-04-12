@@ -44,8 +44,8 @@ export const REMOVE_TASK = gql`
 `;
 
 export const ADD_KAST= gql`
-    mutation addKast($input: kastInput!) {
-        addKast(input: $input) {
+    mutation addKast($kastText: String!) {
+        addKast(kastText: $kastText) {
             username
             myKasts {
               kastText
