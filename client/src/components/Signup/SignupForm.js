@@ -4,8 +4,6 @@ import { ADD_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -31,14 +29,15 @@ const SignupForm = () => {
     event.preventDefault();
 
    try {
-     const { data } = await addUser({
+    const { data } = await addUser({
        variables: signupData
-     })
+    })
 
-     if(error) {
-       console.log(error.message);
-     }
-     Auth.login(data.addUser.token);
+    if(error) {
+      console.log(error.message);
+    }
+    
+    Auth.login(data.addUser.token);
    } catch (err) {
      console.error(err);
    }
@@ -81,10 +80,6 @@ const SignupForm = () => {
         autoComplete="current-password"
         onChange={handleChange}
         value={signupData.password}
-      />
-      <FormControlLabel
-        control={<Checkbox value="remember" color="primary" />}
-        label="Remember me"
       />
       <Button
         type="submit"
