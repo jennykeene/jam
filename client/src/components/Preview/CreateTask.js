@@ -14,13 +14,6 @@ const CreateTask = () => {
 
     const [addKast, { error }] = useMutation(ADD_KAST)
 
-    const handleChange = (event) => {
-
-        const taskInputData = document.querySelector('#kastText').value;
-        console.log(taskInputData);
-
-    };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -32,7 +25,7 @@ const CreateTask = () => {
             const { data } = await addKast({ variables: { kastText } });
             
             console.log(data)
-            //window.location.assign('/preview');
+            window.location.assign('/preview');
         } catch (err) {
             console.error(err);
         }
@@ -53,7 +46,6 @@ const CreateTask = () => {
                         type="kastText"
                         id="kastText"
                         autoComplete="kastText"
-                        onChange={handleChange}
                     />
                     <Button
                         type="submit"
