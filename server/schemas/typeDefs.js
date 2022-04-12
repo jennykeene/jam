@@ -9,14 +9,20 @@ const typeDefs = gql`
         _id: ID
         username: String
         email: String
-        tasks: [Task]
+        myKasts: [Kast]
+        # tasks: [Task]
     }
-    # instructing tasks query so that each task returns this info
+    type Kast {
+        _id: ID
+        kastText: String
+        completed: Boolean
+        createdAt: String
+    }
     type Task {
         _id: ID
         taskText: String
+        completed: Boolean
         createdAt: String
-        username: String
     }
     type Auth {
         token: ID!
@@ -25,15 +31,18 @@ const typeDefs = gql`
     type Query {
         me: User
         users: [User]
-        user(username: String): User
+        user(username: String!): User
         tasks: [Task]!
-        task(_id: ID!): Task
+        getTask(_id: String!): Task
+        myKasts: [Kast]!
     }
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
         addTask(taskText: String!): Task
-        removeTask(taskText: String!): User
+        removeTask(_id: ID!): Task
+        addKast(kastText: String!): User
+        removeKast(_id: ID!): User
     }
 `;
 

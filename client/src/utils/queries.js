@@ -7,33 +7,36 @@ export const QUERY_TASKS = gql`
         tasks {
             _id
             taskText
+            completed
         }
     }
 `;
-
+export const QUERY_TASK = gql`
+    query getTask {
+        _id
+    }
+`
 export const QUERY_USER = gql`
     query user ($username: String!) {
         user(username: $username) {
-            _id
             username
             email
-            tasks {
+            myKasts {
                 _id
-                taskText
+                kastText
             }
         }
     }
 `
 //query to retrieve all data related to logged-in user 
 export const QUERY_ME = gql`
-    {
+    query me {
         me {
             _id
             username
-            email
-            tasks {
+            myKasts {
+                kastText
                 _id
-                taskText
             }
         }
     }

@@ -1,7 +1,11 @@
 import React from 'react'
+import Content from '../components/Calculator/Content'
 
-export const Calculator = () => {
+
+const Calculator = () => {
   return (
-    <div>Calculator</div>
+    <Content />
   )
 }
+
+export default Calculator

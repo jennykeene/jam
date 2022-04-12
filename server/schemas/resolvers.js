@@ -2,39 +2,41 @@
 
 // graphql error handling
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Task } = require('../models');
+const { User, Task, Kast } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        // me method checks if context.user exists...if not, user isn't authenticated & throw auth error
         me: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
-                    .select('-__v -password')
-                    .populate('tasks')
-                return userData
+                .select('-__v -password')
+                .populate('myKasts')
+                return userData;
             }
+
             throw new AuthenticationError('Not logged in');
         },
         users: async () => {
             return User.find()
                 .select('-__v -password')
-                .populate('tasks');
+                .populate('myKasts');
         },
         //parent = placeholder parameter so can access username
         user: async (parent, { username }) => {
-            return User.findOne({ username })
+            const findUser = User.findOne({ username })
             .select('-__v -password')
-            .populate('tasks')
+            .populate('myKasts')
+            return findUser;
         },
         tasks: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Task.find(params).sort({ createdAt: -1 });
         },
-        // tasks: async () => {
-        //     return Task.find({}).populate('taskText');
-        // },
+        myKasts: async (parent, { username }) => {
+            const params = username ? { username } : {};
+            return Kast.find(params).sort({ createdAt: -1 });
+        }
     },
     Mutation: {
         
@@ -58,29 +60,39 @@ const resolvers = {
             return { token, user };
         },
         addTask: async (parent, args, context) => {
-            //check if user is logged on by checking for existence of context.user
             if (context.user) {
-                const task = await Task.create({ ...args, username: context.user.username });
-                await User.findByIdAndUpdate(
-                    { _id: context.user._id },
-                    { $push: { tasks: task._id }},
-                    { new: true } //without true flag Mongo return orginal doc instead of updated document
+                const task = await Task.create({ ...args }); //spread operator: shorthand for listing out all array elements(arguments) one by one
+                await Task.findByIdAndUpdate(
+                    { _id: task._id },
+                    { $addToSet: { tasks: task._id }},
+                    { new: true }
                 );
                 return task;
             }
             throw new AuthenticationError('You need to login first')
         },
-        removeTask: async( parent, { task }, context) => {
-            if(context.user) {
-                // deleteBook fx from user-controllers.js
-                const updatedBooks = await User.findOneAndUpdate(
-                    { _id: context.user._id},
-                    //pulling deleted book from savedBooks array
-                    { $pull: { tasks: task._id }},
+        removeTask: async(_, { _id }) => {
+            return await Task.findOneAndRemove({_id: _id})
+        },
+        addKast: async( parent, args, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { myKasts: args } },
                     { new: true }
                 );
-                // Book is part of User model
-                return updatedTasks;
+                return updatedUser;
+            }
+            throw new AuthenticationError("You need to login in first!");
+        },
+        removeKast: async( parent, args, context) => {
+            if(context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id},
+                    { $pull: { myKasts: args }},
+                    { new: true }
+                );
+                return updatedUser;
             }
         }
     }

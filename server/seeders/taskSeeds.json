@@ -1,21 +1,27 @@
 [
     {
-        "taskText": "Clean kitchen"
+        "username": "Charlie",
+        "taskText": "Clean kitchen",
+        "completed": false
     },
-    
     {
-        "taskText": "Walk dog"
+        "username": "Charlie",
+        "taskText": "Walk dog",
+        "completed": false
     },
-    
     {
-        "taskText": "Run a mile"
+        "username": "Charlie",
+        "taskText": "Run a mile",
+        "completed": false
     },
-    
     {
-        "taskText": "Fix gate"
+        "username": "Charlie",
+        "taskText": "Fix gate",
+        "completed": false
     },
-    
     {
-        "taskText": "Wash Dishes"
+        "username": "Charlie",
+        "taskText": "Wash Dishes",
+        "completed": false
     }
 ]

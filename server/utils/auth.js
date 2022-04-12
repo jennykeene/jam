@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const secret = 'trilogyisdated';
-const expiration = '2h';
+const expiration = '12h';
 
 module.exports = {
     authMiddleware: function({ req }) {
