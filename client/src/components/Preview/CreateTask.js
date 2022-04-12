@@ -25,7 +25,7 @@ const CreateTask = () => {
             const { data } = await addKast({ variables: { kastText } });
             
             console.log(data)
-            //window.location.assign('/preview');
+            window.location.assign('/preview');
         } catch (err) {
             console.error(err);
         }
