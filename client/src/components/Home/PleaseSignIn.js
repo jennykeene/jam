@@ -47,7 +47,7 @@ const PleaseSignIn = () => {
 						Signup
 					</Button>
 					<Button
-						href="/preview"
+						href="/dashboard"
 						type="submit"
 						fullWidth
 						variant="contained"
