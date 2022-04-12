@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ListItemButton from '@mui/material/ListItemButton';
-import { REMOVE_TASK } from '../../utils/mutations';
+import { REMOVE_KAST } from '../../utils/mutations';
 import { Card, CardContent, CardHeader } from '@mui/material';
 import { Avatar, Box, Grid, LinearProgress, Typography } from '@mui/material';
 import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
@@ -19,7 +19,7 @@ const ToDo = (props) => {
 	const [checked, setChecked] = useState([]);
 	const [progressTotal, setProgress] = useState(0);
 	//const [secondary, setSecondary] = React.useState(false);
-	const [removeTask] = useMutation(REMOVE_TASK);
+	const [removeKast] = useMutation(REMOVE_KAST);
 	const { loading, error, data, refetch, networkStatus } = useQuery(QUERY_ME, {
     	notifyOnNetworkStatusChange: true,
   	});
@@ -28,16 +28,7 @@ const ToDo = (props) => {
 	if (loading) return null;
 	if (error) return `Error! ${error}`;
 	console.log(data);
-	/* {me: {…}}
-		me:
-		myKasts: Array(2)
-		0: {__typename: 'Kast', kastText: 'swim', _id: null}
-		1: {__typename: 'Kast', kastText: 'swim', _id: null}
-		length: 2
-		[[Prototype]]: Array(0)
-		username: "wes"
-		__typename: "User"
-		_id: "625251ca19e01aadda8e33ac"*/
+
 	const userData = data.me.myKasts || {};
 	console.log(userData);
 	
@@ -70,10 +61,10 @@ const ToDo = (props) => {
 	}
 
 
-	const handleDeleteTask = async (task) => {
-		console.log(task);
-		const deleteTask = JSON.stringify(task._id);
-		const textofTask = task.taskText
+	const handleDeleteTask = async (kast) => {
+		console.log(kast);
+		const deleteTask = JSON.stringify(kast._id);
+		const textofTask = kast.kastText
 		console.log(textofTask);
 		console.log (deleteTask);
 
@@ -81,7 +72,7 @@ const ToDo = (props) => {
 		console.log(taskText)
 		
         try {
-			const { data } = await removeTask({ variables: {_id: task._id } });
+			const { data } = await removeKast({ variables: {_id: kast._id } });
 			console.log(data);
 			window.location.assign('/preview');
         } catch (err) {

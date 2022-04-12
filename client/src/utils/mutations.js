@@ -57,9 +57,8 @@ export const ADD_KAST= gql`
 export const REMOVE_KAST = gql`
     mutation removeKast($_id: ID!) {
         removeKast(_id: $_id) {
-            username
-            savedKasts {
-                kastId
+            myKasts {
+                _id
                 kastText
             }
         }    

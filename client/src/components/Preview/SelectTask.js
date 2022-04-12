@@ -7,22 +7,22 @@ import Pets from '@mui/icons-material/Pets';
 import VideogameAsset from '@mui/icons-material/VideogameAsset';
 import CleaningServices from '@mui/icons-material/CleaningServices'
 import { useMutation } from '@apollo/client';
-import { ADD_TASK } from '../../utils/mutations';
+import { ADD_KAST} from '../../utils/mutations';
 
 const SelectTask = () => {
-    const [addTask, { error }] = useMutation(ADD_TASK)
+    const [addKast, { error }] = useMutation(ADD_KAST)
 
-    //const [secondary, setSecondary] = React.useState(false);
     const handleClick = async (event) => {
         event.preventDefault();
-        const taskText = document.querySelector("#taskText > span").innerHTML;
-        console.log(taskText)
+
+        const kastText = document.querySelector("#taskText > span").innerHTML;
+        console.log(kastText)
 
         try {
-            const { data } = await addTask({ variables: { taskText }});
+            const { data } = await addKast({ variables: { kastText }});
             
             console.log(data)
-            window.location.assign('/dashboard');
+            window.location.assign('/preview');
         } catch (err) {
             console.error(err);
         }

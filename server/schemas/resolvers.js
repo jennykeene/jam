@@ -85,11 +85,11 @@ const resolvers = {
             }
             throw new AuthenticationError("You need to login in first!");
         },
-        removeKast: async( parent, { kastId }, context) => {
+        removeKast: async( parent, args, context) => {
             if(context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id},
-                    { $pull: { kasts: { _id: _id }}},
+                    { $pull: { myKasts: args }},
                     { new: true }
                 );
                 return updatedUser;
