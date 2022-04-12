@@ -17,7 +17,6 @@ db.once('open', () => {
     // create new Apollo Server & pass in plugins, schema, auth middleware
     const server = new ApolloServer({
       plugins: [ 
-
         ApolloServerPluginDrainHttpServer({ httpServer }) 
       ],
       typeDefs,
