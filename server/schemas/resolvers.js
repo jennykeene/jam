@@ -7,33 +7,35 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        // me method checks if context.user exists...if not, user isn't authenticated & throw auth error
         me: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
-                    .select('-__v -password')
-                    .populate('myKasts')
-                return userData
+                .select('-__v -password')
+                .populate('myKasts')
+                return userData;
             }
+
             throw new AuthenticationError('Not logged in');
         },
         users: async () => {
             return User.find()
                 .select('-__v -password')
-                .populate('tasks');
+                .populate('myKasts');
         },
         //parent = placeholder parameter so can access username
         user: async (parent, { username }) => {
-            return User.findOne({ username })
+            const findUser = User.findOne({ username })
             .select('-__v -password')
-            .populate('tasks')
+            .populate('myKasts')
+            return findUser;
         },
         tasks: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Task.find(params).sort({ createdAt: -1 });
         },
-        getTask: async (parent, args) => {
-            await Task.findById(args._id)
+        myKasts: async (parent, { username }) => {
+            const params = username ? { username } : {};
+            return Kast.find(params).sort({ createdAt: -1 });
         }
     },
     Mutation: {
@@ -72,11 +74,11 @@ const resolvers = {
         removeTask: async(_, { _id }) => {
             return await Task.findOneAndRemove({_id: _id})
         },
-        addKast: async( parent, { input }, context) => {
+        addKast: async( parent, args, context) => {
             if (context.user) {
-                const updatedUser = await User.findByIdAndUpdate(
+                const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { addKast: input } },
+                    { $addToSet: { myKasts: args } },
                     { new: true }
                 );
                 return updatedUser;
