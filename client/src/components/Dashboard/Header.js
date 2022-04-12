@@ -30,7 +30,7 @@ function Header(props) {
                   </IconButton>
                 </Grid>
                 <Grid item xs />
-                {/* ******* login link ******* */}
+                {/* ******* home link ******* */}
                 <Grid item>
                   <Button
                     href="/"
@@ -42,9 +42,41 @@ function Header(props) {
                         color: 'common.white',
                       },
                     }}
+                  >
+                    home 
+                  </Button>
+                </Grid>
+                {/* ******* login link ******* */}
+                <Grid item>
+                  <Button
+                    href="/login"
+                    variant="body2"
+                    sx={{
+                      textDecoration: 'none',
+                      color: lightColor,
+                      '&:hover': {
+                        color: 'common.white',
+                      },
+                    }}
                     rel="noopener noreferrer"
                   >
-                    logout
+                    LOGIN
+                  </Button>
+                </Grid>
+                {/************ Signup link ************/}
+                <Grid item>
+                  <Button
+                    href="/signup"
+                    variant="body2"
+                    sx={{
+                      textDecoration: 'none',
+                      color: lightColor,
+                      '&:hover': {
+                        color: 'common.white',
+                      },
+                    }}
+                  >
+                    Signup
                   </Button>
                 </Grid>
               </Grid>
