@@ -11,11 +11,7 @@ import NoMatch from './pages/NoMatch';
 import Dashboard from './pages/Dashboard';
 import Preview from './pages/Preview';
 import Calculator from './pages/Calculator';
-<<<<<<< HEAD
-import Workouts from './pages/Workouts';
-=======
 import News from './pages/News';
->>>>>>> 658171f63a4646b99f69526085c4f1206589a9a2
 
 const httpLink = new HttpLink({
   uri: "http://localhost:3001/graphql" || "/graphql",
