@@ -20,7 +20,7 @@ const ToDo = (props) => {
 	const [progressTotal, setProgress] = useState(0);
 	//const [secondary, setSecondary] = React.useState(false);
 	const [removeKast] = useMutation(REMOVE_KAST);
-	const { loading, error, data, refetch, networkStatus } = useQuery(QUERY_ME, {
+	const { loading, error, data, networkStatus } = useQuery(QUERY_ME, {
     	notifyOnNetworkStatusChange: true,
   	});
 	
@@ -85,7 +85,6 @@ const ToDo = (props) => {
   	}
   	return (
 		<>
-		<button onClick={() => refetch()}>Refetch!</button>
 			<Card
 				sx={{ height: '25%', mb: 2, }}
 				{...props}
