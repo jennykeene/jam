@@ -53,6 +53,7 @@ function App() {
               <Route path ='/calculator' element={<Calculator />} />
               <Route path ='/news' element={<News />} />
               <Route element={<NoMatch />} />
+
             </Routes>
           </div>
         </div>
