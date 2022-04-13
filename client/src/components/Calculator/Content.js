@@ -83,7 +83,6 @@ export const Calculator = () => {
   }
 
   return (
-    <div className='header'>
     <div className='calculator'>
       <div className='calculator__result'>
         <div ref={expRef} className='calculator__result__exp'></div>
@@ -102,7 +101,6 @@ export const Calculator = () => {
           ))
         }
       </div>
-    </div>
     </div>
   );
 }
