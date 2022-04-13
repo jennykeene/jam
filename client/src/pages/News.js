@@ -19,30 +19,6 @@ const News = () => {
       <Navigation />
       <Footer />
       <NewsList />
-      {/* <BrowserRouter>
-        <NavBar />
-        {/* <LoadingBar color="#005abb" height={3} progress={progress} /> */}
-        {/* <Routes>
-          {
-            router.map(path =>
-              <Route
-                exact
-                key={uuidv4()}
-                path={path.path}
-                element={
-                  <NewsList
-                    setProgress={setProgress}
-                    key={path.key}
-                    category={path.category}
-                    pageSize={pageSize}
-                    country={path.country}
-                  />
-                }
-              />
-            )
-          }
-        </Routes> */}
-      {/* </BrowserRouter> */}
     </>
   );
 }
