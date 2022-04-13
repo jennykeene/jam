@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import NavBar from "../components/News/Navbar";
-import NewsList from "../components/News/NewsList";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { router } from "../utils/API/config";
+import Footer from "../components/News/Footer";
+import Navbar from "../components/News/Navbar";
+// import { v4 as uuidv4 } from "uuid";
+// import NewsList from "../components/News/NewsList";
+// import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// import { router } from "../utils/API/config";
 //import LoadingBar from "react-top-loading-bar";
 
 const News = () => {
@@ -15,10 +16,12 @@ const News = () => {
 
   return (
     <>
-      <BrowserRouter>
+      <Navbar />
+      <Footer />
+      {/* <BrowserRouter>
         <NavBar />
         {/* <LoadingBar color="#005abb" height={3} progress={progress} /> */}
-        <Routes>
+        {/* <Routes>
           {
             router.map(path =>
               <Route
@@ -37,8 +40,8 @@ const News = () => {
               />
             )
           }
-        </Routes>
-      </BrowserRouter>
+        </Routes> */}
+      {/* </BrowserRouter> */}
     </>
   );
 }
