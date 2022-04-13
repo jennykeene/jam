@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Footer from "../components/News/Footer";
-import Navbar from "../components/News/Navbar";
+import Navigation from "../components/News/Navbar";
+import NewsList from "../components/News/NewsList";
 // import { v4 as uuidv4 } from "uuid";
-// import NewsList from "../components/News/NewsList";
 // import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import { router } from "../utils/API/config";
 //import LoadingBar from "react-top-loading-bar";
@@ -16,8 +16,9 @@ const News = () => {
 
   return (
     <>
-      <Navbar />
+      <Navigation />
       <Footer />
+      <NewsList />
       {/* <BrowserRouter>
         <NavBar />
         {/* <LoadingBar color="#005abb" height={3} progress={progress} /> */}
