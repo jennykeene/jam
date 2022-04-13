@@ -11,16 +11,19 @@ export const QUERY_TASKS = gql`
         }
     }
 `;
-
+export const QUERY_TASK = gql`
+    query getTask {
+        _id
+    }
+`
 export const QUERY_USER = gql`
     query user ($username: String!) {
         user(username: $username) {
-            _id
             username
             email
-            tasks {
+            myKasts {
                 _id
-                taskText
+                kastText
             }
         }
     }
@@ -31,9 +34,9 @@ export const QUERY_ME = gql`
         me {
             _id
             username
-            tasks {
+            myKasts {
+                kastText
                 _id
-                taskText
             }
         }
     }
