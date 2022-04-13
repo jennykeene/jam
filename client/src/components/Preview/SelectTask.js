@@ -71,8 +71,8 @@ const SelectTask = () => {
                             />
                         </ListItem>
                         {/* clean */}
-                        <ListItem>
-                            <ListItemAvatar onClick={handleClick}>
+                        <ListItem onClick={handleClick}>
+                            <ListItemAvatar>
                                 <IconButton sx={{ backgroundColor: 'text.secondary', height: 35, width: 35 }}>
                                     <CleaningServices />
                                 </IconButton>
@@ -83,7 +83,7 @@ const SelectTask = () => {
                             />
                         </ListItem>
                         {/* gaming */}
-                        <ListItem>
+                        <ListItem  onClick={handleClick}>
                             <ListItemAvatar onClick={handleClick}>
                                 <IconButton sx={{ backgroundColor: 'error.main', height: 35, width: 35 }}>
                                     <VideogameAsset />
