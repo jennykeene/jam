@@ -1,21 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
-
+// import css
 import './Calculator.css';
-import Image from '../../assets/images/beachvibes.jpg';
-
+// import button functions
 import { btns, CALC_BTNS } from './btnConfig';
 
 export const Calculator = () => {
 
-  const styles = {
-    paperContainer: {
-        backgroundImage: `url(${Image})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: "100vh",
-        color: "#f5f5f5"
-    }
-};
+
 
   const btnsRef = useRef(null);
   const expRef = useRef(null);
@@ -94,7 +85,6 @@ export const Calculator = () => {
   }
 
   return (
-    <div className='styles' styles='background'>
     <div className='calculator'>
       <div className='calculator__result'>
         <div ref={expRef} className='calculator__result__exp'></div>
@@ -113,7 +103,6 @@ export const Calculator = () => {
           ))
         }
       </div>
-    </div>
     </div>
   );
 }
