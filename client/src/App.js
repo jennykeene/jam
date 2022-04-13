@@ -11,6 +11,7 @@ import NoMatch from './pages/NoMatch';
 import Dashboard from './pages/Dashboard';
 import Preview from './pages/Preview';
 import Calculator from './pages/Calculator';
+import Workouts from './pages/Workouts';
 
 const httpLink = new HttpLink({
   uri: "http://localhost:3001/graphql" || "/graphql",
@@ -47,7 +48,9 @@ function App() {
               <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/preview' element={<Preview />} />
               <Route path ='/calculator' element={<Calculator />} />
+              <Route path ='/workouts' element={<Workouts />} />
               <Route element={<NoMatch />} />
+
             </Routes>
           </div>
         </div>

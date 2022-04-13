@@ -73,6 +73,7 @@ function Header(props) {
             <Tab href="/preview" label="Tasks" />
             <Tab href="/calculator "label="Calculator" />
             <Tab href="/news "label="News" />
+            {/* <Tab href="/workouts" label="Workouts" /> */}
           </Tabs>
         </AppBar>
       </>
