@@ -15,10 +15,10 @@ import { Card, CardContent, CardHeader } from '@mui/material';
 import { Avatar, Box, Grid, LinearProgress, Typography } from '@mui/material';
 import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
 
+
 const ToDo = (props) => {
 	const [checked, setChecked] = useState([]);
 	const [progressTotal, setProgress] = useState(0);
-	//const [secondary, setSecondary] = React.useState(false);
 	const [removeKast] = useMutation(REMOVE_KAST);
 	const { loading, error, data, networkStatus } = useQuery(QUERY_ME, {
     	notifyOnNetworkStatusChange: true,
