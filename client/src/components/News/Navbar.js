@@ -1,5 +1,7 @@
 import React from 'react'
-import { AppBar } from '@mui/material'
+import { v4 as uuidv4 } from "uuid";
+import { navbarBrand, navs } from "../../utils/API/config";
+import { AppBar } from '@mui/material';
 const Navbar = () => {
 
 // navbar backgroundColor, padding, and fontsize
@@ -19,8 +21,8 @@ const nav = {
 };
 
   return (
-    <AppBar>
-      
+    <AppBar style={navBar} variant="dark" expand="lg" fixed="top">
+      Michael Keene, the Dream Queen
     </AppBar>
   )
 }
