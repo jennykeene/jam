@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-// import NavBar from "./components/NavBar/NavBar";
-// import News from "./components/News/News";
+import NavBar from "../components/News/Navbar";
+import NewsList from "../components/News/NewsList";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { router } from "../utils/API/config";
 //import LoadingBar from "react-top-loading-bar";
@@ -26,7 +26,7 @@ const News = () => {
                 key={uuidv4()}
                 path={path.path}
                 element={
-                  <News
+                  <NewsList
                     setProgress={setProgress}
                     key={path.key}
                     category={path.category}
