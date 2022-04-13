@@ -1,7 +1,6 @@
 import React from 'react';
 import { v4 as uuidv4 } from "uuid";
 import { navbarBrand, navs } from "../../utils/API/config";
-import { AppBar } from '@mui/material';
 import { Navbar, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap"
 const Navigation = () => {
@@ -23,8 +22,6 @@ const nav = {
 };
 
   return (
-    <AppBar style={navBar} variant="dark" expand="lg" fixed="top">
-      Michael Keene, the Dream Queen
       <Navbar style={navBar} variant="dark" expand="lg" fixed="top">
       <Navbar.Brand style={navBrand} href="/">{navbarBrand}</Navbar.Brand> 
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -38,7 +35,6 @@ const nav = {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-    </AppBar>
   )
 }
 
