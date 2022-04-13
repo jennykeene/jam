@@ -51,6 +51,7 @@ function App() {
               <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/preview' element={<Preview />} />
               <Route path ='/calculator' element={<Calculator />} />
+              <Route path ='/news' element={<News />} />
               <Route element={<NoMatch />} />
 
             </Routes>
