@@ -87,7 +87,7 @@ const ToDo = (props) => {
   	return (
 		<>
 			<Card
-				sx={{ height: '20%', mb: 2, }}
+				sx={{ height: '25%', mb: 2, }}
 				{...props}
 			>
 				<CardContent>
