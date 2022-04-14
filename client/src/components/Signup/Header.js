@@ -16,7 +16,7 @@ const Header = () => {
             <Grid container alignItems="center" spacing={1}>
                 <Grid item xs>
                 <Typography color="inherit" variant="h5" component="h1">
-                    Hello, Peasant.
+                    Sign Up
                 </Typography>
                 </Grid>
             </Grid>
