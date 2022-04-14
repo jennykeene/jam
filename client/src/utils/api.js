@@ -1,5 +1,6 @@
-export const API_DOMAIN = "https://newsapi.org/v2/top-headlines?country="
-export const endpointPath = (country, category, page, pageSize) => `${API_DOMAIN}${country}&category=${category}&apiKey=${process.env.API_KEY}&page=${page}&pageSize=${pageSize}`;
+export const API_DOMAIN = "https://newsapi.org/v2/top-headlines?country=";
+export const API_KEY = "0ec9ed04b24240b9ab5ee00ff9db6777";
+export const endpointPath = (country, category, page, pageSize) => `${API_DOMAIN}${country}&category=${category}&apiKey=${API_KEY}&page=${page}&pageSize=${pageSize}`;
 export const navbarBrand = "JAM News";
 export const header = (category) => `News - Top ${category} Headlines`;
 export const navs = [
