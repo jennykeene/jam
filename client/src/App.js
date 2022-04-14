@@ -12,12 +12,14 @@ import Dashboard from './pages/Dashboard';
 import Preview from './pages/Preview';
 import Calculator from './pages/Calculator';
 import News from './pages/News';
+import NoMatch from './pages/NoMatch';
 
 const httpLink = new HttpLink({
   uri: "http://localhost:3001/graphql" || "/graphql",
   fetch: fetch
 });
-const createLink = createHttpLink({
+
+export const createLink = createHttpLink({
   uri: "http://localhost:3001/graphql" || "/graphql",
 })
 const authLink = setContext((_, { headers }) => {
@@ -55,6 +57,7 @@ function App() {
               <Route path='/preview' element={<Preview />} />
               <Route path ='/calculator' element={<Calculator />} />
               <Route path ='/news' element={<News />} />
+              <Route element={<NoMatch />} />
               <Route>
                 {
                   router.map(path =>
@@ -73,7 +76,7 @@ function App() {
                     />
                   )
                 }
-            </Route>
+              </Route>
             </Routes>
           </div>
         </div>
