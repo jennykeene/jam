@@ -33,20 +33,6 @@ function Header(props) {
                 {/* ******* logout link ******* */}
                 <Grid item>
                   <Button
-                    href="/preview"
-                    variant="body2"
-                    sx={{
-                      textDecoration: 'none',
-                      color: lightColor,
-                      '&:hover': {
-                        color: 'common.white',
-                      },
-                    }}
-                    rel="noopener noreferrer"
-                  >
-                    Dashboard
-                  </Button>
-                  <Button
                     href="/"
                     onClick={Auth.logout}
                     variant="body2"
@@ -87,7 +73,7 @@ function Header(props) {
           <Tabs value={1} textColor="inherit">
             <Tab href="/preview" label="Tasks" />
             <Tab href="/calculator "label="Calculator" />
-            <Tab href="/news "label="News" />
+            <Tab href="https://www.foxnews.com/"label="News" />
           </Tabs>
         </AppBar>
       </>
