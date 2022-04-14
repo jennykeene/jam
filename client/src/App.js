@@ -40,6 +40,7 @@ const client = new ApolloClient ({
 });
 
 const router = [
+    { path: "/", key: "general", category: "general", country: "us" },
     { path: "/general", key: "general", category: "general", country: "us" },
     { path: "/business", key: "business", category: "business", country: "us" },
     { path: "/sports", key: "sports", category: "sports", country: "us" },
@@ -70,7 +71,7 @@ function App() {
                 {
                   router.map(path =>
                     <Route
-                      key={path.key}
+                      key={uuidv4()}
                       path={path.path}
                       element={
                         <News
