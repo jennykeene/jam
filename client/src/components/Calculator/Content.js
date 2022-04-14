@@ -7,7 +7,7 @@ import { btns, CALC_BTNS } from './btnConfig';
 export const Calculator = () => {
 
 
-
+  // js for calculator function
   const btnsRef = useRef(null);
   const expRef = useRef(null);
 
