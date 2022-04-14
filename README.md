@@ -18,9 +18,12 @@ A MERN App with Apollo Express Server and GraphQL.
 * npm start
 
 ## Usage
-### Link
-
+### App
+[Heroku Link](https://ancient-lake-76105.herokuapp.com/)
 ### Screenshots
+<img width="953" alt="homepg" src="https://user-images.githubusercontent.com/92952780/163304871-03330615-5feb-4a79-b33c-2c24781a942b.png">
+<img width="955" alt="taskpg" src="https://user-images.githubusercontent.com/92952780/163305012-29526f25-a473-4da1-b963-6d5638d522e7.png">
+<img width="955" alt="calcpg" src="https://user-images.githubusercontent.com/92952780/163305122-0cfa3406-11fc-41e6-bad1-e3d5e9e7f746.png">
 
 ## Licence 📃
 MIT License
