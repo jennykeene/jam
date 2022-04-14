@@ -18,7 +18,9 @@ A MERN App with Apollo Express Server and GraphQL.
 * npm start
 
 ## Usage
-### Videos
+### Link
+
+### Screenshots
 
 ## Licence 📃
 MIT License
