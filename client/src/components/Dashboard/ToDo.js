@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { QUERY_TASKS } from '../../utils/queries';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,7 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ListItemButton from '@mui/material/ListItemButton';
-import { REMOVE_TASK } from '../../utils/mutations';
 import { Card, CardContent, CardHeader } from '@mui/material';
 import { Avatar, Box, Grid, LinearProgress, Typography } from '@mui/material';
 import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
@@ -17,7 +16,7 @@ import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
 const ToDo = (props) => {
 	const [checked, setChecked] = useState([]);
 	const [progressTotal, setProgress] = useState(0);
-	//const [secondary, setSecondary] = React.useState(false);
+
 	// query existing tasks from database
 	const { data } = useQuery( QUERY_TASKS );
     console.log(data);
