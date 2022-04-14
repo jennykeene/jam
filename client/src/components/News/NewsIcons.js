@@ -12,7 +12,7 @@ const NewsIcons = (props) => {
     borderTopLeftRadius: "15px",
     borderTopRightRadius: "15px",
   };
-// export const bttn
+// bttn
   const bttn = {
     backgroundColor: "#005abb",
     borderRadius: "12px",
@@ -20,28 +20,12 @@ const NewsIcons = (props) => {
     color: "#fff",
     boxShadow: "0 30px 36px 0 rgba(0, 0, 0, 0.2)",
   };
-//export const detail
-  const detail = {
-    marginBottom: "15px"
-  };
-//export const sum
-  const sum = {
-    color: "#f5f5f5",
-    fontSize: "15px"
-  };
 
-//export const txt
+// txt
   const txt = {
     color: "#b6b4b4",
   };
-//export const text
-  const text = {
-    color: "#6c757d",
-    marginBottom: "3px",
-    marginTop: "4px",
-    fontSize: "12px",
-    opacity: 1
-  };
+
   
   const { imageUrl, alt, description, title, urlNews } = props
 
