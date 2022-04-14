@@ -18,7 +18,6 @@ const ToDo = (props) => {
 	const [checked, setChecked] = useState([]);
 	const [progressTotal, setProgress] = useState(0);
 	//const [secondary, setSecondary] = React.useState(false);
-	const [removeTask] = useMutation(REMOVE_TASK);
 	// query existing tasks from database
 	const { data } = useQuery( QUERY_TASKS );
     console.log(data);
@@ -51,26 +50,6 @@ const ToDo = (props) => {
 		console.log(progressTotal);
 		setProgress(progressTotal);
 	}
-
-
-	const handleDeleteTask = async (task) => {
-		console.log(task);
-		const deleteTask = JSON.stringify(task._id);
-		const textofTask = task.taskText
-		console.log(textofTask);
-		console.log (deleteTask);
-
-        const taskText = document.querySelector("#list-node");
-		console.log(taskText)
-		
-        try {
-			const { data } = await removeTask({ variables: {_id: task._id } });
-			console.log(data);
-			window.location.assign('/dashboard');
-        } catch (err) {
-            console.error(err);
-        }
-    }
 	
 	
   	return (
@@ -147,7 +126,7 @@ const ToDo = (props) => {
 									/>
 								
 									{/********** delete icon **********/}
-									<IconButton aria-label="delete" onClick={() => handleDeleteTask(task)}>
+									<IconButton aria-label="delete">
 										<DeleteIcon />
 									</IconButton>					
 								</ListItem>
