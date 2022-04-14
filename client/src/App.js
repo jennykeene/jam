@@ -19,9 +19,7 @@ const httpLink = new HttpLink({
   fetch: fetch
 });
 
-export const createLink = createHttpLink({
-  uri: "http://localhost:3001/graphql" || "/graphql",
-})
+
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
@@ -35,8 +33,7 @@ const authLink = setContext((_, { headers }) => {
 // instantiate Apollo Client 
 const client = new ApolloClient ({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-  createLink,
+  cache: new InMemoryCache()
 });
 
 const router = [
