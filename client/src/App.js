@@ -3,8 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { HttpLink } from '@apollo/client';
-import { v4 as uuidv4 } from "uuid";
-// import { router } from "./utils/api";
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -47,7 +45,6 @@ const router = [
 
 function App() {
   const pageSize = 7;
-  document.body.style.backgroundColor = "rgb(36, 39, 41)";
   
   return (
     //enable aaplication to interact with Apollo Client instance 
@@ -68,7 +65,6 @@ function App() {
                 {
                   router.map(path =>
                     <Route
-                      key={uuidv4()}
                       path={path.path}
                       element={
                         <News
