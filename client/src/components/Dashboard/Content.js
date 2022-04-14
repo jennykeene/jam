@@ -24,7 +24,7 @@ const Content = () => {
                 <div className='column is-3 mt-4 ml-5'>
                     <CreateTask />
                     <br />
-                    <SelectTask />
+                    
                 </div>
                 {/* {{!--************** Little Boxes **************--}} */}
                 <div className='column is-9 mt-4 ml-2'>

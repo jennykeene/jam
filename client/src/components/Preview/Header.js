@@ -1,5 +1,5 @@
 import * as React from 'react';
-//import Auth from '../../utils/auth';
+import Auth from '../../utils/auth';
 import AppBar from '@mui/material/AppBar';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -34,6 +34,7 @@ function Header(props) {
                 <Grid item>
                   <Button
                     href="/"
+                    onClick={Auth.logout}
                     variant="body2"
                     sx={{
                       textDecoration: 'none',
@@ -44,7 +45,7 @@ function Header(props) {
                     }}
                     rel="noopener noreferrer"
                   >
-                    logout
+                    home / logout
                   </Button>
                 </Grid>
               </Grid>
@@ -56,7 +57,7 @@ function Header(props) {
                     <Grid container alignItems="center" spacing={1}>
                         <Grid item xs>
                         <Typography color="inherit" variant="h5" component="h1">
-                            Hello, Peasant.
+                            Your Task Master
                         </Typography>
                         </Grid>
                         
@@ -72,7 +73,7 @@ function Header(props) {
           <Tabs value={0} textColor="inherit">
             <Tab href="/preview" label="Tasks" />
             <Tab href="/calculator "label="Calculator" />
-            <Tab href="/news "label="News" />
+            <Tab href="https://www.foxnews.com/"label="News" />
           </Tabs>
         </AppBar>
       </>

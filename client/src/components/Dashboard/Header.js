@@ -1,5 +1,4 @@
 import * as React from 'react';
-//import Auth from '../../utils/auth';
 import AppBar from '@mui/material/AppBar';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -88,7 +87,7 @@ function Header(props) {
                     <Grid container alignItems="center" spacing={1}>
                         <Grid item xs>
                         <Typography color="inherit" variant="h5" component="h1">
-                            Hello, Peasant.
+                            Preview Only (all task functions have been disabled)
                         </Typography>
                         </Grid>
                         
@@ -105,7 +104,6 @@ function Header(props) {
             <Tab href="/preview" label="Tasks" />
             <Tab href="/calculator "label="Calculator" />
             <Tab href="/news "label="News" />
-            {/* <Tab href="/workouts" label="Workouts" /> */}
           </Tabs>
         </AppBar>
       </>

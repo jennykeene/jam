@@ -35,7 +35,7 @@ const CreateTask = () => {
         <>
         <Card>
             <CardContent>
-                <Typography>Create Task</Typography>
+                <Typography color="textPrimary" variant="h6">Create Task</Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                     <TextField
                         margin="normal"

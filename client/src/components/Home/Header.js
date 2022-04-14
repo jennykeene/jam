@@ -11,13 +11,13 @@ const Header = () => {
         color="primary"
         position="static"
         elevation={0}
-        sx={{ zIndex: 0 }}
+        sx={{ zIndex: 0, py: 2 }}
     >
         <Toolbar>
             <Grid container alignItems="center" spacing={1}>
                 <Grid item xs>
-                <Typography color="inherit" variant="h5" component="h1">
-                    Hello, Peasant.
+                <Typography color="inherit" variant="h4" component="h1" align="center">
+                    Welcome to the JAM Task Master!
                 </Typography>
                 </Grid>
             </Grid>

@@ -7,20 +7,20 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
-import Checkbox from '@mui/material/Checkbox';
+import Checkbox from '@mui/material/Checkbox'; 
 import DeleteIcon from '@mui/icons-material/Delete';
 import ListItemButton from '@mui/material/ListItemButton';
 import { REMOVE_KAST } from '../../utils/mutations';
 import { Card, CardContent, CardHeader } from '@mui/material';
 import { Avatar, Box, Grid, LinearProgress, Typography } from '@mui/material';
-import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+
 
 const ToDo = (props) => {
 	const [checked, setChecked] = useState([]);
 	const [progressTotal, setProgress] = useState(0);
-	//const [secondary, setSecondary] = React.useState(false);
 	const [removeKast] = useMutation(REMOVE_KAST);
-	const { loading, error, data, refetch, networkStatus } = useQuery(QUERY_ME, {
+	const { loading, error, data, networkStatus } = useQuery(QUERY_ME, {
     	notifyOnNetworkStatusChange: true,
   	});
 	
@@ -44,20 +44,21 @@ const ToDo = (props) => {
 			newChecked.splice(currentIndex, 1);
 		}
 		setChecked(newChecked);
-
-		const numberofChecked = checked.length + 1;
+		
+		const numberofChecked = newChecked.length;
 		console.log(numberofChecked);
 		return handleProgressBar(numberofChecked);
 		
 	};
-	
+
 	const handleProgressBar = (numberofChecked) => {
 		const totalTasks = userData.length;
 		console.log (totalTasks);
 
-		const progressTotal = (((numberofChecked) / totalTasks) * 100)
+		const progressTotal = (((numberofChecked) / totalTasks) * 100);
+		const reducedTotal = Math.trunc(progressTotal);
 		console.log(progressTotal);
-		setProgress(progressTotal);
+		setProgress(reducedTotal);
 	}
 
 
@@ -85,9 +86,8 @@ const ToDo = (props) => {
   	}
   	return (
 		<>
-		<button onClick={() => refetch()}>Refetch!</button>
 			<Card
-				sx={{ height: '25%', mb: 2, }}
+				sx={{ height: '20%', mb: 2, }}
 				{...props}
 			>
 				<CardContent>
@@ -112,8 +112,8 @@ const ToDo = (props) => {
 							</Typography>
 						</Grid>
 						<Grid item>
-							<Avatar sx={{ backgroundColor: 'secondary.main', height: 56, width: 56 }} >
-								<InsertChartIcon />
+							<Avatar sx={{ backgroundColor: "#00e676", height: 56, width: 56 }} >
+								<CheckBoxIcon />
 							</Avatar>
 						</Grid>
 					</Grid>

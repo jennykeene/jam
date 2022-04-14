@@ -1,5 +1,5 @@
 import * as React from 'react';
-//import Auth from '../../utils/auth';
+import Auth from '../../utils/auth';
 import AppBar from '@mui/material/AppBar';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -30,10 +30,11 @@ function Header(props) {
                   </IconButton>
                 </Grid>
                 <Grid item xs />
-                {/* ******* login link ******* */}
+                {/* ******* logout link ******* */}
                 <Grid item>
                   <Button
                     href="/"
+                    onClick={Auth.logout}
                     variant="body2"
                     sx={{
                       textDecoration: 'none',
@@ -44,7 +45,7 @@ function Header(props) {
                     }}
                     rel="noopener noreferrer"
                   >
-                    logout
+                    home / logout
                   </Button>
                 </Grid>
               </Grid>
@@ -56,7 +57,7 @@ function Header(props) {
                     <Grid container alignItems="center" spacing={1}>
                         <Grid item xs>
                         <Typography color="inherit" variant="h5" component="h1">
-                            Hello, Peasant.
+                            Calculator
                         </Typography>
                         </Grid>
                         
@@ -69,10 +70,10 @@ function Header(props) {
       
         {/* // Bar with tabs (Tasks, News, Weather) */}
         <AppBar component="div" position="static" elevation={0} sx={{ zIndex: 0 }}>
-          <Tabs value={0} textColor="inherit">
+          <Tabs value={1} textColor="inherit">
             <Tab href="/preview" label="Tasks" />
             <Tab href="/calculator "label="Calculator" />
-            <Tab href="/news "label="News" />
+            <Tab href="https://www.foxnews.com/"label="News" />
           </Tabs>
         </AppBar>
       </>
