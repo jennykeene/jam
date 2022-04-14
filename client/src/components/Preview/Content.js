@@ -24,18 +24,18 @@ const Content = () => {
                 <div className='column is-3 mt-4 ml-5'>
                     <CreateTask />
                     <br />
-                    <SelectTask />
+                    
                 </div>
                 {/* {{!--************** Little Boxes **************--}} */}
                 <div className='column is-9 mt-4 ml-2'>
                     {/* {{!--*********** TASK TO DO ***********--}} */}
                     <div className='columns'>
-                        <div className='column is-6'>
+                        <div className='column is-7'>
                             <ToDo />
                         </div>
                     {/* {{!--*********** Select Task ***********--}} */}
-                        <div className='column is-5 mr-4'>
-                            <SelectTask />
+                        <div className='column is-4 mr-4'>
+                           <SelectTask />
                         </div>
                     </div>
             
