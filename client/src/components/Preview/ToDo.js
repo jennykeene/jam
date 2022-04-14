@@ -44,13 +44,13 @@ const ToDo = (props) => {
 			newChecked.splice(currentIndex, 1);
 		}
 		setChecked(newChecked);
-
+		
 		const numberofChecked = newChecked.length;
 		console.log(numberofChecked);
 		return handleProgressBar(numberofChecked);
 		
 	};
-	
+
 	const handleProgressBar = (numberofChecked) => {
 		const totalTasks = userData.length;
 		console.log (totalTasks);
