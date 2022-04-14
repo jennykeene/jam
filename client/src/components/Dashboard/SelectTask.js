@@ -6,27 +6,9 @@ import LaptopMac from '@mui/icons-material/LaptopMac';
 import Pets from '@mui/icons-material/Pets';
 import VideogameAsset from '@mui/icons-material/VideogameAsset';
 import CleaningServices from '@mui/icons-material/CleaningServices'
-import { useMutation } from '@apollo/client';
-import { ADD_TASK } from '../../utils/mutations';
+
 
 const SelectTask = () => {
-    const [addTask, { error }] = useMutation(ADD_TASK)
-
-    //const [secondary, setSecondary] = React.useState(false);
-    const handleClick = async (event) => {
-        event.preventDefault();
-        const taskText = document.querySelector("#taskText > span").innerHTML;
-        console.log(taskText)
-
-        try {
-            const { data } = await addTask({ variables: { taskText }});
-            
-            console.log(data)
-            window.location.assign('/dashboard');
-        } catch (err) {
-            console.error(err);
-        }
-    }
 
     return (
         <Card>
@@ -35,7 +17,7 @@ const SelectTask = () => {
                     <Typography variant="h6">
                         Select Task to Add
                     </Typography>
-                    <List onClick={handleClick}>
+                    <List>
                         {/* workout */}
                         <ListItem>
                             <ListItemAvatar>
@@ -48,8 +30,7 @@ const SelectTask = () => {
                                 id="taskText"
                                 name="taskText"
                                 type="taskText"
-                                onClick={handleClick}
-                                //secondary={secondary ? 'Secondary text' : null}
+
                             />
                         </ListItem>
                         {/* study */}
@@ -100,7 +81,6 @@ const SelectTask = () => {
                                 id="taskText"
                             />
                         </ListItem>
-                    {error && <div> You must login first </div>}
                     </List>
                 </Grid>
             </CardContent>
