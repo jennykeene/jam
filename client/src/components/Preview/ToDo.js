@@ -13,7 +13,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import { REMOVE_KAST } from '../../utils/mutations';
 import { Card, CardContent, CardHeader } from '@mui/material';
 import { Avatar, Box, Grid, LinearProgress, Typography } from '@mui/material';
-import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 
 const ToDo = (props) => {
@@ -55,9 +55,10 @@ const ToDo = (props) => {
 		const totalTasks = userData.length;
 		console.log (totalTasks);
 
-		const progressTotal = (((numberofChecked) / totalTasks) * 100)
+		const progressTotal = (((numberofChecked) / totalTasks) * 100);
+		const reducedTotal = Math.trunc(progressTotal);
 		console.log(progressTotal);
-		setProgress(progressTotal);
+		setProgress(reducedTotal);
 	}
 
 
@@ -86,7 +87,7 @@ const ToDo = (props) => {
   	return (
 		<>
 			<Card
-				sx={{ height: '25%', mb: 2, }}
+				sx={{ height: '20%', mb: 2, }}
 				{...props}
 			>
 				<CardContent>
@@ -112,7 +113,7 @@ const ToDo = (props) => {
 						</Grid>
 						<Grid item>
 							<Avatar sx={{ backgroundColor: 'secondary.main', height: 56, width: 56 }} >
-								<InsertChartIcon />
+								<CheckBoxIcon />
 							</Avatar>
 						</Grid>
 					</Grid>
