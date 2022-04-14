@@ -112,7 +112,7 @@ const ToDo = (props) => {
 							</Typography>
 						</Grid>
 						<Grid item>
-							<Avatar sx={{ backgroundColor: 'secondary.main', height: 56, width: 56 }} >
+							<Avatar sx={{ backgroundColor: "#00e676", height: 56, width: 56 }} >
 								<CheckBoxIcon />
 							</Avatar>
 						</Grid>
