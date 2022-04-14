@@ -17,7 +17,6 @@ const lightColor = 'rgba(255, 255, 255, 0.7)';
 const Navigation = () => {
 
 const navs = [
-    { nav: "Home", page: "/" },
     { nav: "General", page: "/general" },
     { nav: "Business", page: "/business" },
     { nav: "Sports", page: "/sports" },
