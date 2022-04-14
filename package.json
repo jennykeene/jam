@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/jennyk1989/jam/issues"
   },
-  "homepage": "https://github.com/jennyk1989/jam#readme"
+  "homepage": "https://github.com/jennyk1989/jam#readme",
+  "dependencies": {
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-top-loading-bar": "^2.1.0"
+  }
 }
