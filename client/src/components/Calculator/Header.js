@@ -73,7 +73,7 @@ function Header(props) {
           <Tabs value={1} textColor="inherit">
             <Tab href="/preview" label="Tasks" />
             <Tab href="/calculator "label="Calculator" />
-            <Tab href="https://www.foxnews.com/"label="News" />
+            <Tab href="/news"label="News" />
           </Tabs>
         </AppBar>
       </>
