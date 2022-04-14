@@ -1,16 +1,8 @@
-import React from 'react'
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+import React from 'react';
 
 const Footer = () => {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://github.com/jennyk1989/jam">
-        JAM Team
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
+    <div></div>
   )
 }
 

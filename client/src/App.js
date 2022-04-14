@@ -4,7 +4,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context';
 import { HttpLink } from '@apollo/client';
 import { v4 as uuidv4 } from "uuid";
-import { router } from "./utils/api";
+// import { router } from "./utils/api";
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -39,6 +39,14 @@ const client = new ApolloClient ({
   createLink,
 });
 
+const router = [
+    { path: "/general", key: "general", category: "general", country: "us" },
+    { path: "/business", key: "business", category: "business", country: "us" },
+    { path: "/sports", key: "sports", category: "sports", country: "us" },
+    { path: "/entertainment", key: "entertainment", category: "entertainment", country: "us" },
+    { path: "/technology", key: "technology", category: "technology", country: "us" }
+]
+
 function App() {
   const pageSize = 7;
   document.body.style.backgroundColor = "rgb(36, 39, 41)";
@@ -62,8 +70,7 @@ function App() {
                 {
                   router.map(path =>
                     <Route
-                      exact
-                      key={uuidv4()}
+                      key={path.key}
                       path={path.path}
                       element={
                         <News

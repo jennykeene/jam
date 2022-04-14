@@ -11,11 +11,19 @@ import { Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { v4 as uuidv4 } from "uuid";
-import { navs } from "../../utils/api"
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 // navigation bar function
 
 const Navigation = () => {
+
+const navs = [
+    { nav: "Home", page: "/" },
+    { nav: "General", page: "/general" },
+    { nav: "Business", page: "/business" },
+    { nav: "Sports", page: "/sports" },
+    { nav: "Entertainment", page: "/entertainment" },
+    { nav: "Technology", page: "/technology" }
+]
 
   return (
     // navbar properties w dark as the variant
@@ -36,7 +44,7 @@ const Navigation = () => {
               </IconButton>
             </Grid>
             <Grid item xs />
-            {/* ******* login link ******* */}
+            {/* ******* logout/home link ******* */}
             <Grid item>
               <Button
                 href="/"
@@ -51,7 +59,7 @@ const Navigation = () => {
                 }}
                 rel="noopener noreferrer"
               >
-                home / logout
+                logout
               </Button>
             </Grid>
           </Grid>
@@ -75,9 +83,9 @@ const Navigation = () => {
 
           <AppBar position="static" elevation={0} sx={{ zIndex: 0 }}>
             <Grid container>
-              {navs.map(navs =>
+              {navs.map((navs) =>
                 <Toolbar sx={{ color: "inherit", }} className="mk" to={navs.page} key={uuidv4()}>
-                  <Link className="mgk" color="inherit" href={navs.nav}>
+                  <Link className="mgk" color="inherit" href={navs.page}>
                       {navs.nav}
                   </Link>
                 </Toolbar>
