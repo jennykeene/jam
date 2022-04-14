@@ -8,7 +8,6 @@ import { router } from "./utils/api";
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import NoMatch from './pages/NoMatch';
 import Dashboard from './pages/Dashboard';
 import Preview from './pages/Preview';
 import Calculator from './pages/Calculator';
