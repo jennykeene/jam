@@ -81,6 +81,7 @@ function Header(props) {
       
       )}
       
+// added the main header to calculator page
         
 
 export default Header;
