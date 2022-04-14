@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { HttpLink } from '@apollo/client';
-
+import { v4 as uuidv4 } from "uuid";
+import { router } from "./utils/api";
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -17,7 +18,7 @@ const httpLink = new HttpLink({
   uri: "http://localhost:3001/graphql" || "/graphql",
   fetch: fetch
 });
-export const createLink = createHttpLink({
+const createLink = createHttpLink({
   uri: "http://localhost:3001/graphql" || "/graphql",
 })
 const authLink = setContext((_, { headers }) => {
@@ -38,6 +39,9 @@ const client = new ApolloClient ({
 });
 
 function App() {
+  const pageSize = 7;
+  document.body.style.backgroundColor = "rgb(36, 39, 41)";
+  
   return (
     //enable aaplication to interact with Apollo Client instance 
     <ApolloProvider client={client}>
@@ -52,8 +56,25 @@ function App() {
               <Route path='/preview' element={<Preview />} />
               <Route path ='/calculator' element={<Calculator />} />
               <Route path ='/news' element={<News />} />
-              <Route element={<NoMatch />} />
-
+              <Route>
+                {
+                  router.map(path =>
+                    <Route
+                      exact
+                      key={uuidv4()}
+                      path={path.path}
+                      element={
+                        <News
+                          key={path.key}
+                          category={path.category}
+                          pageSize={pageSize}
+                          country={path.country}
+                        />
+                      }
+                    />
+                  )
+                }
+            </Route>
             </Routes>
           </div>
         </div>
