@@ -1,61 +1,60 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import NewsIcons from "./NewsIcons";
+import NewsItem from "../News/NewsIcons";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Nullimage from "../../components/News/nullimage.png";
 import { Row, Col } from "react-bootstrap";
-import { endpointPath } from "../../utils/API/api";
-import { header } from "../../utils/API/config";
+import { endpointPath } from "../../utils/api"
+import { header } from "../../utils/api";
 import styled from "styled-components";
-import Nullimage from "../../assets/images/nullimage.png";
 
-const NewsList = (props) => {
-  const [articles, setArticles] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [totalResults, setTotalResults] = useState(0);
-
-  const Header = styled.h1`
+const Header = styled.h1`
     text-align: center;
     margin-top: 120px;
     color: #fff;
     margin-bottom: 20px;
-  `
+`
 
-  const Container = styled.div`
+const Container = styled.div`
     width: 93%;
     padding-right: (1.5rem, 0.75rem);
     padding-left: (1.5rem, 0.75rem);
     margin-right: auto;
     margin-left: auto;
-  `
-  const card = {
+`
+const card = {
     marginTop: "10px",
     marginBottom: "50px"
-  }
-    
+}
 
-    const capitaLize = (string) => {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    };
+function News(props) {
+  const [articles, setArticles] = useState([]);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [totalResults, setTotalResults] = useState(0);
 
-    document.title = `${capitaLize(props.category)} - News App`;
+  const capitaLize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
-    const updatenews = async () => {
-      try {
-        props.setProgress(15);
-        const response = await axios.get(endpointPath(props.country, props.category, page, props.pageSize));
-        setLoading(true);
-        props.setProgress(70);
-        const parsedData = response.data;
-        setArticles(parsedData.articles);
-        setTotalResults(parsedData.totalResults);
-        setLoading(false);
-        props.setProgress(100);
-      }
-      catch (error) {
-        console.error(error);
-      }
+  document.title = `${capitaLize(props.category)} - News App`;
+
+  const updatenews = async () => {
+    try {
+      // props.setProgress(15);
+      const response = await axios.get(endpointPath(props.country, props.category, page, props.pageSize));
+      setLoading(true);
+      // props.setProgress(70);
+      const parsedData = response.data;
+      setArticles(parsedData.articles);
+      setTotalResults(parsedData.totalResults);
+      setLoading(false);
+      // props.setProgress(100);
+    }
+    catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -94,7 +93,7 @@ const NewsList = (props) => {
                   style={card}
                   key={element.url}
                 >
-                  <NewsIcons
+                  <NewsItem
                     title={element.title}
                     description={element.description}
                     author={element.author}
@@ -119,16 +118,15 @@ const NewsList = (props) => {
   );
 }
 
-NewsList.defaultProps = {
+News.defaultProps = {
   country: "us",
   pageSize: 7,
   category: "general",
 };
-NewsList.propTypes = {
+News.propTypes = {
   country: PropTypes.string,
   pageSize: PropTypes.number,
   category: PropTypes.string,
-  
-}
+};
 
-export default NewsList
+export default News;
