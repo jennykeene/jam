@@ -15,12 +15,12 @@ import News from './pages/News';
 import NoMatch from './pages/NoMatch';
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:3001/graphql" || "/graphql",
+  uri: "/graphql",
   fetch: fetch
 });
 
 export const createLink = createHttpLink({
-  uri: "http://localhost:3001/graphql" || "/graphql",
+  uri: "/graphql",
 })
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
