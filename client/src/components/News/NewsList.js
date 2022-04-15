@@ -45,7 +45,7 @@ const card = {
 }
 
 const navs = [
-  { nav: "Home", page: "/" },
+  { nav: "Home", page: "/news" },
   { nav: "General", page: "/general" },
   { nav: "Business", page: "/business" },
   { nav: "Sports", page: "/sports" },
@@ -156,7 +156,7 @@ const News = (props) => {
             <Grid container>
               {navs.map((navs) =>
                 <Toolbar sx={{ color: "inherit", }} className="mk" to={navs.page} key={uuidv4()}>
-                  <Link className="mgk" color="inherit" href={navs.page}>
+                  <Link className="mgk" color="inherit" href={navs.nav}>
                       {navs.nav}
                   </Link>
                 </Toolbar>
