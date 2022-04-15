@@ -1,8 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { HttpLink } from '@apollo/client';
+import { v4 as uuidv4 } from "uuid";
+import { router } from "./utils/api";
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -17,7 +19,9 @@ const httpLink = new HttpLink({
   fetch: fetch
 });
 
-
+export const createLink = createHttpLink({
+  uri: "http://localhost:3001/graphql" || "/graphql",
+})
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
@@ -31,20 +35,14 @@ const authLink = setContext((_, { headers }) => {
 // instantiate Apollo Client 
 const client = new ApolloClient ({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  createLink,
 });
 
-const router = [
-    { path: "/", key: "general", category: "general", country: "us" },
-    { path: "/general", key: "general", category: "general", country: "us" },
-    { path: "/business", key: "business", category: "business", country: "us" },
-    { path: "/sports", key: "sports", category: "sports", country: "us" },
-    { path: "/entertainment", key: "entertainment", category: "entertainment", country: "us" },
-    { path: "/technology", key: "technology", category: "technology", country: "us" }
-]
 
 function App() {
   const pageSize = 7;
+
   
   return (
     //enable aaplication to interact with Apollo Client instance 
@@ -65,6 +63,8 @@ function App() {
                 {
                   router.map(path =>
                     <Route
+                      exact
+                      key={uuidv4()}
                       path={path.path}
                       element={
                         <News
