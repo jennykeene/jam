@@ -207,7 +207,7 @@ const News = (props) => {
                         ? Nullimage
                         : element.urlToImage
                     }
-                    urlNews="https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=0ec9ed04b24240b9ab5ee00ff9db6777&page=1&pageSize=7"
+                    urlNews={element.url}
                   />
                 </Col>
               );

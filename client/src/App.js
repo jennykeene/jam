@@ -57,7 +57,6 @@ function App() {
               <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/preview' element={<Preview />} />
               <Route path ='/calculator' element={<Calculator />} />
-              <Route path ='/news' element={<News />} />
               <Route element={<NoMatch />} />
               <Route>
                 {
@@ -65,7 +64,7 @@ function App() {
                     <Route
                       exact
                       key={uuidv4()}
-                      path={path.path}
+                      path='/news'
                       element={
                         <News
                           key={path.key}
