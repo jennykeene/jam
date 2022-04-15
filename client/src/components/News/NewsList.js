@@ -16,7 +16,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-//import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -74,9 +74,7 @@ const News = (props) => {
       setLoading(true);
 
       const parsedData = response.data;
-      console.log(parsedData)
       setArticles(parsedData.articles);
-      
       setTotalResults(parsedData.totalResults);
       setLoading(false);
 
@@ -99,7 +97,6 @@ const News = (props) => {
     setTotalResults(parsedData.totalResults);
   };
 
-  
   return (
     <>
         <>
@@ -158,11 +155,11 @@ const News = (props) => {
           <AppBar position="static" elevation={0} sx={{ zIndex: 0 }}>
             <Grid container>
               {navs.map((navs) =>
-                
+                <Toolbar sx={{ color: "inherit", }} className="mk" to={navs.page} key={uuidv4()}>
                   <Link className="mgk" color="inherit" href={navs.page}>
-                    
+                      {navs.nav}
                   </Link>
-
+                </Toolbar>
               )}
             </Grid>
           </AppBar>
